@@ -137,7 +137,7 @@ footer.footer {
 .btn-color {
     border: 0px;
 
-    background-color: rgb(47, 164, 112);
+    background-color: #6FA09E;
 }
 
 .btn-color:hover {
@@ -225,14 +225,13 @@ p.icon-title1 {
     background-color: whitesmoke;
 }
 
-.font-color{
-    color: #19b382;
+.font-color {
+    color: #6FA09E;
 }
-
 
 /*navbar*/
 .navbar {
-    background-color: #19b382;
+    background-color: #6FA09E;
 }
 
 .navbar1 {
@@ -285,11 +284,11 @@ p.icon-title1 {
 .navbar .navbar-nav .dropdown-menu .dropdown-item:focus,
 .navbar .navbar-nav .dropdown-menu .dropdown-item.active {
     color: #ecdbff;
-    background-color: #19b382;
+    background-color: #6FA09E;
 }
 
 .navbar .navbar-nav .dropdown-menu .dropdown-divider {
-    border-top-color: #19b382;
+    border-top-color: #6FA09E;
 }
 
 .navbar .navbar-nav .nav-item.active .nav-link,
@@ -299,16 +298,16 @@ p.icon-title1 {
 .navbar .navbar-nav .nav-item.show .nav-link:hover,
 .navbar .navbar-nav .nav-item.show .nav-link:focus {
     color: #ecdbff;
-    background-color: #19b382;
+    background-color: #6FA09E;
 }
 
 .navbar .navbar-toggle {
-    border-color: #19b382;
+    border-color: #6FA09E;
 }
 
 .navbar .navbar-toggle:hover,
 .navbar .navbar-toggle:focus {
-    background-color: #19b382;
+    background-color: #6FA09E;
 }
 
 .navbar .navbar-toggle .navbar-toggler-icon {
@@ -356,7 +355,7 @@ p.icon-title1 {
 
     .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
         color: #ecdbff;
-        background-color: #19b382;
+        background-color: #6FA09E;
     }
 }
 
@@ -372,7 +371,7 @@ p.icon-title1 {
 
     .navbar-expand-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
         color: #ecdbff;
-        background-color: #19b382;
+        background-color: #6FA09E;
     }
 }
 
@@ -403,7 +402,7 @@ p.icon-title1 {
 
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
     color: #ecdbff;
-    background-color: #19b382;
+    background-color: #6FA09E;
 }
 
 .search-space {
@@ -424,4 +423,19 @@ p.icon-title1 {
     padding-left: 0px;
     width: 100%;
     max-width: 1140px;
+}
+
+.logo {
+    margin-top: 10px;
+    height: 10%;
+    width: 10%;
+}
+
+.icon {
+    color: #6FA09E;
+    margin: 0.3em;
+}
+
+.info-text {
+    color: #6FA09E;
 }
