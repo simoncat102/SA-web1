@@ -1,8 +1,9 @@
 .container {
-    margin-right: 5%;
-    margin-left: 5%;
-    padding-right: 8px;
-    padding-left: 8px;
+    margin-top: 20px;
+    margin-right: 10%;
+    margin-left: 10%;
+    padding-right: 15px;
+    padding-left: 15px;
     width: 100%;
     max-width: 1140px; // 隨螢幕尺寸而變，當螢幕尺寸 ≥ 1200px 時是 1140px。
 }
