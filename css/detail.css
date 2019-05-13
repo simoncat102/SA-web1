@@ -1,5 +1,9 @@
+body {
+    background-color: lightgray;
+}
+
 .container {
-    margin-top: 20px;
+    margin-top: 5%;
     margin-right: 10%;
     margin-left: 10%;
     padding-right: 15px;
@@ -7,44 +11,57 @@
     width: 100%;
     max-width: 1140px; // 隨螢幕尺寸而變，當螢幕尺寸 ≥ 1200px 時是 1140px。
 }
-.container-rightup{
-  width:240px;
-　height:280px;
- float: right;
-}
-.container-left {
-    margin-top: 5%;
+
+.ctable {
+    float: inherit;
 }
 
-.container-leftdown {
-    width: 460px;
-    height: 245px;
-    margin-top: 12px;
+.t1 {
+/*    text-align: center;*/
+    margin-left: 155px;
 }
-.ctable{
-    float: right;
-}
-.t1{
-width:150px;　
-padding:20px;　
-border:2px blue solid;
-margin-right:10px;
-float:left;
+
+.t2 {
+/*    text-align: center;*/
+    margin-left: 55px;
 }
 
 .text {
-    margin-left: 35%;
+    margin: 10px;
+    font-weight: 500;
+    color: #6FA09E;
 }
 
-
-.img {
-    height: 40%;
-    width: 40%;
+.text2{
+    margin-top: 10px;
+    font-family: monospace;
+    font-size: 16px;
 }
-.t2{
-width:150px;
-line-height:50px;
-padding:20px;
-border:2px green solid;
-float:left;
+
+.height {
+    height: 220px;
+}
+
+.img2 {
+    width: 420px;
+    height: 420px;
+    overflow: hidden;
+    background: #f80;
+}
+
+.btn-color-detail{
+    color: white;
+    font-weight: 600;
+    background-color: #6FA09E;
+    width: 300px;
+}
+.btn-color-detail:hover{
+    color: white;
+    font-weight: 600;
+    background-color: #8DCCCA;
+    width: 300px;
+}
+
+.table-border{
+    border: 0;
 }
