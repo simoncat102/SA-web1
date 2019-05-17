@@ -26,3 +26,11 @@ h4.text-style{
     border-radius: 0;
     margin-bottom: 2px;
 }
+
+a.card-info{
+    color:black;
+}
+
+a.card-info:hover{
+    color: darkslategray;
+}
