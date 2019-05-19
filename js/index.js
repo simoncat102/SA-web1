@@ -6,3 +6,8 @@ $('.header').on('click', '.search-toggle', function(e) {
 
   e.preventDefault();
 });
+
+// Material Select Initialization
+$(document).ready(function() {
+$('.mdb-select').materialSelect();
+});
