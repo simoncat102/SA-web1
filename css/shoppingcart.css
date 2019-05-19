@@ -12,12 +12,56 @@ body {
     max-width: 1140px; // 隨螢幕尺寸而變，當螢幕尺寸 ≥ 1200px 時是 1140px。
 }
 
-.bg-white{
+.bg-white {
     background-color: #fff;
-    height: 1000px;
+    height: 120%;
     margin-bottom: 5%;
 }
 
-.shop-check{
+.shop-check {
     margin-left: 20px;
+}
+
+.title {
+    margin: 3em 5% 1%;
+
+}
+
+hr{
+     border: 1px solid lightgray;
+}
+
+img.goods{
+    height: 150px;
+    width: 200px;
+    margin-left: 5%;
+}
+p.checkout{
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 5%;
+}
+
+img.creditcard{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.btn-cart{
+    color: #fff;
+    background-color: #6FA09E;
+    width: 90%;
+    margin: 5%;
+}
+
+.btn-cart:hover{
+    background-color: #8DCCCA;
+}
+
+.goods-text{
+    vertical-align: top;
+}
+
+.goods-price{
+    color:indianred;
 }
