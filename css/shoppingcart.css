@@ -59,7 +59,9 @@ img.creditcard{
 }
 
 .goods-text{
-    vertical-align: top;
+    font-weight: 600;
+    text-align: left;
+    vertical-align: baseline;
 }
 
 .goods-price{
