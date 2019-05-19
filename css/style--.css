@@ -6,8 +6,8 @@ body {
 
 .header {
     max-width: 100%;
+/*    margin: 2em auto ;*/
     margin-top: 0px;
-
     background-color: #6FA09E;
 }
 
@@ -30,8 +30,8 @@ body {
     display: inline-block;
     float: right;
     list-style-type: none;
-    margin: 3px; 
-    padding: 3px;
+    margin: 0;
+    padding: 0;
 }
 
 .menu li {
@@ -116,8 +116,9 @@ body {
 #header-1 .search-box {
     position: absolute;
     bottom: 0;
-    width: 70%;
+    width: 80%;
     height: 100%;
+  
     max-height: 0;
     -webkit-transform: translateY(100%);
     transform: translateY(100%);
@@ -128,15 +129,24 @@ body {
 #header-1 .search-box .search-input {
     width: 80%;
     height: 100%;
-    padding: 0 2em;
+    padding: 0 1em;
     border: 0;
-    background-color: transparent;
-    opacity: 0;
+    background-color: #6FA09E;
+    opacity: 0.8;
     color: #fff;
+    margin-left: 30px;
+    margin-right: 0px;
+}
+
+.float-right {
+    float: right;
+    width: 80%;
+    margin-right: 0px;
+    height: auto;
 }
 
 #header-1 .search-box .search-input::-webkit-input-placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 1);
 }
 
 #header-1.show .search-box {
@@ -145,11 +155,4 @@ body {
 
 #header-1.show .search-box .search-input {
     opacity: 1;
-}
-
-.float-right {
-    float: right;
-    width: 80%;
-    margin-right: 0px;
-    height: auto;
 }

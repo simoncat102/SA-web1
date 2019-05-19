@@ -1,0 +1,23 @@
+body {
+    background-color: lightgray;
+}
+
+.container1 {
+    margin-top: 5%;
+    margin-right: 15%;
+    margin-left: 15%;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+    max-width: 1140px; // 隨螢幕尺寸而變，當螢幕尺寸 ≥ 1200px 時是 1140px。
+}
+
+.bg-white{
+    background-color: #fff;
+    height: 1000px;
+    margin-bottom: 5%;
+}
+
+.shop-check{
+    margin-left: 20px;
+}
