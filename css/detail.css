@@ -17,14 +17,13 @@ body {
 }
 
 .t1 {
-/*    text-align: center;*/
-    margin-left: 155px;
+    
+
+    margin-bottom: 2%;
+
 }
 
-.t2 {
-/*    text-align: center;*/
-    margin-left: 55px;
-}
+
 
 .text {
     margin: 10px;
@@ -32,7 +31,7 @@ body {
     color: #6FA09E;
 }
 
-.text2{
+.text2 {
     margin-top: 10px;
     font-family: monospace;
     font-size: 16px;
@@ -43,28 +42,34 @@ body {
 }
 
 .img2 {
-    width: 420px;
-    height: 420px;
-    overflow: hidden;
+    width: 400px;
+    height: 400px;
     background: #f80;
+    object-fit: cover;
 }
 
-.btn-color-detail{
+.btn-color-detail {
     color: white;
     font-weight: 600;
     background-color: #6FA09E;
     width: 300px;
 }
-.btn-color-detail:hover{
+
+.btn-color-detail:hover {
     color: white;
     font-weight: 600;
     background-color: #8DCCCA;
     width: 300px;
 }
 
-.table-border{
+.table-border {
     border: 0;
 }
-.method{
-    line-height:240%;
+
+.method {
+    line-height: 240%;
+}
+
+.name{
+    margin-left: -25%;
 }
