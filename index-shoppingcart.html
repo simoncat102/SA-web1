@@ -23,7 +23,102 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/shoppingcart.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        const headers = {
+            headers: {
+                "Authorization": "Bearer keyabYPbrYnSWmK9v"
+            }
+        };
+        const getShoppingcartListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Shoppingcart';
+        const getProductListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Product';
+        const getShoppingcartList = async () => {
+            const response = await fetch(getShoppingcartListAPI + '?view=Grid%20view', headers);
+            const data = await response.json();
+            return data;
+        }
+        const getProductList = async () => {
+            const response = await fetch(getProductListAPI + '?view=Grid%20view', headers);
+            const data = await response.json();
+            return data;
+        }
 
+        function sum(sumeach, sumall) {
+            return parseInt(sumeach) + parseInt(sumall);
+        }
+
+        $(document).ready(function() {
+            getShoppingcartList().then(shoppingcartListData => { // *****先取得全部Shop*****
+                const shoppingcartList = shoppingcartListData.records;
+                console.log('shoppingcartList:', shoppingcartList);
+                getProductList().then(ProductListData => { // *****再取得全部product*****
+                    const productList = ProductListData.records;
+                    console.log('productList:', productList);
+                    var sumeach;
+                    var sumall = 0;
+                    $.each(productList, (index, product) => {
+                        let productShoppingcart = [];
+                        const productId = product.id;
+                        const {
+                            Pro_name,
+                            Pro_price,
+                            Pro_image,
+                            Shoppingcart
+                        } = product.fields;
+                        if (Shoppingcart) { // *****如果此pro有shoppingcart
+                            productShoppingcart = shoppingcartList.filter(shoppingcart => shoppingcart.fields.name[0] === productId); // *****在全部shop中找出此pro的shop*****
+                            console.log('productShoppingcart:', productShoppingcart);
+                            sumeach = productShoppingcart.map(item => item.fields.Shop_amount * Pro_price);
+                            sumall = sum(sumall, sumeach);
+                            $('#contains').append(
+                                `
+                            <table class="table table-borderless table-sm goods-text">
+                                <tr>
+                                    <td rowspan="4"><img class="goods" src="${Pro_image}"></td>
+                                    <td class="goods-price">$${Pro_price}</td>
+                                </tr>
+                                <tr>
+                                    <td>${Pro_name}</td>
+                                </tr>
+                                <tr>
+                                    <td>小計：</td>
+                                    <td class="browser-default">$${sumeach}</td>
+                                </tr>
+                                <tr>
+                                    <td>數量：</td>
+                                    <td>
+                                        <select class="browser-default custom-select">
+                                            <option selected value="${productShoppingcart.map(item => (`${item.fields.Shop_amount}`))}">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            `);
+                        }
+                    });
+                    $('#total').append(
+                        `
+                        <h4 class="title">總額</h4>
+                        <hr>
+                        <p class="checkout">商品總價：$${sumall}</p>
+                        <p class="checkout">運費：$100</p>
+                        <p class="checkout">總額：$${sumall+100}</p>
+                        <br>
+                        <hr>
+                        <p class="checkout">我們接受：</p>
+                        <img class="creditcard" src="https://www.patriotfamilydental.com/wp-content/uploads/2016/08/accepted-creditcards.png">
+                        <button type="submit" class="btn btn-cart">
+                            <a href="#" class="color-wt">結帳</a>
+                        </button>
+                    `);
+                });
+            });
+        });
+
+    </script>
 
 </head>
 
@@ -60,12 +155,10 @@
     <div class="container1">
         <div class="row">
             <div class="col-md-6 bg-white">
-
                 <h4 class="title">購物車</h4>
-
                 <hr>
-
-                <div class="col-md-12">
+                <div class="col-md-12" id="contains">
+                    <!--
                     <table class="table table-borderless table-sm goods-text">
                         <tr>
                             <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
@@ -77,48 +170,41 @@
                         <tr>
                             <td>&nbsp;</td>
                         </tr>
-
-
-
                         <tr>
                             <td>數量：</td>
-                            <td><select class="browser-default custom-select">
+                            <td>
+                                <select class="browser-default custom-select">
                                     <option selected value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                </select></td>
+                                </select>
+                            </td>
                         </tr>
                     </table>
-
-                    <div class="table-responsive-sm">
-                        <table class="table table-borderless table-sm goods-text">
-                            <tr>
-                                <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
-                                <td class="goods-price">$168</td>
-                            </tr>
-                            <tr>
-                                <td>黃金炸豬排</td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-
-
-
-                            <tr>
-                                <td>數量：</td>
-                                <td><select class="browser-default custom-select">
+                    <table class="table table-borderless table-sm goods-text">
+                        <tr>
+                            <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
+                            <td class="goods-price">$168</td>
+                        </tr>
+                        <tr>
+                            <td>黃金炸豬排</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>數量：</td>
+                            <td>
+                                <select class="browser-default custom-select">
                                         <option selected value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
-                                    </select></td>
-                            </tr>
-                        </table>
-                    </div>
-
-
+                                    </select>
+                            </td>
+                        </tr>
+                    </table>
                     <table class="table table-borderless table-sm goods-text">
                         <tr>
                             <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
@@ -130,20 +216,18 @@
                         <tr>
                             <td>&nbsp;</td>
                         </tr>
-
-
-
                         <tr>
                             <td>數量：</td>
-                            <td><select class="browser-default custom-select">
+                            <td>
+                                <select class="browser-default custom-select">
                                     <option selected value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                </select></td>
+                                </select>
+                            </td>
                         </tr>
                     </table>
-
                     <table class="table table-borderless table-sm goods-text">
                         <tr>
                             <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
@@ -155,20 +239,18 @@
                         <tr>
                             <td>&nbsp;</td>
                         </tr>
-
-
-
                         <tr>
                             <td>數量：</td>
-                            <td><select class="browser-default custom-select">
+                            <td>
+                                <select class="browser-default custom-select">
                                     <option selected value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                </select></td>
+                                </select>
+                            </td>
                         </tr>
                     </table>
-
                     <table class="table table-borderless table-sm goods-text">
                         <tr>
                             <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
@@ -180,34 +262,27 @@
                         <tr>
                             <td>&nbsp;</td>
                         </tr>
-
-
-
                         <tr>
                             <td>數量：</td>
-                            <td><select class="browser-default custom-select">
+                            <td>
+                                <select class="browser-default custom-select">
                                     <option selected value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                </select></td>
+                                </select>
+                            </td>
                         </tr>
                     </table>
-
-
+-->
                 </div>
-
+                <!--<<div class="col-md-12">-->
                 <hr>
-
-
-
-
-
-
             </div>
-            <div class="col-md-4 bg-white shop-check">
+            <!--<div class="col-md-6 bg-white">-->
+            <div class="col-md-4 bg-white shop-check" id="total">
+                <!--
                 <h4 class="title">總額</h4>
-
                 <hr>
                 <p class="checkout">商品總價：$872</p>
                 <p class="checkout">運費：$100</p>
@@ -215,13 +290,15 @@
                 <hr>
                 <p class="checkout">我們接受：</p>
                 <img class="creditcard" src="https://www.patriotfamilydental.com/wp-content/uploads/2016/08/accepted-creditcards.png">
-
                 <button type="submit" class="btn btn-cart">
-                    <a href="#" class="color-wt">結帳</a></button>
+                    <a href="#" class="color-wt">結帳</a>
+                </button>
+-->
             </div>
 
 
         </div>
+        <!--<div class="row">-->
 
 
 
@@ -283,4 +360,7 @@
 
         <script src="js/index.js"></script>
     </div>
-</body></html>
+    <!--<div class="container1">-->
+</body>
+
+</html>
