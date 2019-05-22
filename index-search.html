@@ -28,33 +28,106 @@
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
     <script src="airtable.browser.js"></script>
     <script>
+        //        $(document).ready(function() {
+        //            fetch('https://api.airtable.com/v0/appZpGVmdenKv27KK/Product?&view=Grid%20view', {
+        //                    headers: {
+        //                        "Authorization": "Bearer keyYUsB5KpziWQeW5"
+        //                    }
+        //                })
+        //                .then(function(response) {
+        //                    return response.json();
+        //                })
+        //                .then(function(data) {
+        //                    console.log('data:', data);
+        //                    $.each(data.records, function(i, item) {
+        //                        $('#product').append(
+        //                            `
+        //              <div class="card">
+        //                  <a href="index-detail.html?id=${item.id}" class="card-info">
+        //                  <img src="${item.fields.Pro_image}" alt="Avatar" class="goods">
+        //                  <div class="container">
+        //                      <h4 class="text-style"><b>${item.fields.Pro_name}</b></h4>
+        //                      <p>不知道有什麼東西可以吃</p>
+        //                      <p><b>$${item.fields.Pro_price}</b></p>
+        //                  </div>
+        //                  </a>
+        //              </div>
+        //        `);
+        //                    })
+        //                });
+        //        });
+        const headers = {
+            headers: {
+                "Authorization": "Bearer keyabYPbrYnSWmK9v"
+            }
+        };
+        const getProductListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Product'; //customer==product
+        const getPromatListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Pro_material'; //order==pro_material
+        const getMaterialListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Material'; //order==material
+        const getProductList = async () => {
+            const response = await fetch(getProductListAPI + '?view=Grid%20view', headers);
+            const data = await response.json();
+            return data;
+        }
+        const getPromatList = async () => {
+            const response = await fetch(getPromatListAPI + '?view=Grid%20view', headers);
+            const data = await response.json();
+            return data;
+        }
+        const getMaterialList = async () => {
+            const response = await fetch(getMaterialListAPI + '?view=Grid%20view', headers);
+            const data = await response.json();
+            return data;
+        }
+
         $(document).ready(function() {
-            fetch('https://api.airtable.com/v0/appZpGVmdenKv27KK/Product?&view=Grid%20view', {
-                    headers: {
-                        "Authorization": "Bearer keyYUsB5KpziWQeW5"
-                    }
-                })
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    console.log('data:', data);
-                    $.each(data.records, function(i, item) {
-                        $('#product').append(
-                            `
-              <div class="card">
-                  <a href="index-detail.html?id=${item.id}" class="card-info">
-                  <img src="${item.fields.Pro_image}" alt="Avatar" class="goods">
-                  <div class="container">
-                      <h4 class="text-style"><b>${item.fields.Pro_name}</b></h4>
-                      <p>不知道有什麼東西可以吃</p>
-                      <p><b>$${item.fields.Pro_price}</b></p>
-                  </div>
-                  </a>
-              </div>
-        `);
-                    })
+            getPromatList().then(promatListData => { // *****先取得全部promat*****
+                const promatList = promatListData.records;
+                console.log('promatList:', promatList);
+                getMaterialList().then(meterialListData => { // *****再取得全部mat*****
+                    const materialList = meterialListData.records;
+                    console.log('meterialList:', materialList);
+                    getProductList().then(productListData => { // *****再取得全部pro*****
+                        const productList = productListData.records;
+                        console.log('productList:', productList);
+                        $.each(productList, (index, product) => {
+                            let productMaterial = [];
+                            let materialProduct = [];
+                            const productId = product.id;
+                            const {
+                                Pro_name,
+                                Pro_price,
+                                Pro_image,
+                                Pro_material
+                            } = product.fields;
+                            if (Pro_material) { // *****如果此mat有pro
+                                productMaterial = promatList.filter(promat => promat.fields.Pro_id[0] === productId);
+                                // *****在全部shop中找出此mat的pro*****
+                                console.log('productMaterial:', productMaterial);
+                                let mat = productMaterial.map(item => item.fields.Mat_id);
+                                $.each(mat, (index, m) => {
+                                    const matId = m[0];
+                                    materialProduct = materialList.filter(matpro => matpro.id === matId);
+                                    console.log("materialProduct:", materialProduct);
+                                });
+                                $('#product').append(
+                                    `
+                                <div class="card">
+                                    <a href="index-detail.html?id=${productId}" class="card-info">
+                                        <img src="${Pro_image}" alt="Avatar" class="goods">
+                                        <div class="container">
+                                            <h4 class="text-style"><b>${Pro_name}</b></h4>
+                                            <p>${materialProduct.map(item => item.fields.Mat_name)}等材料！</p>
+                                            <p><b>$${Pro_price}</b></p>
+                                        </div>
+                                    </a>
+                                </div>
+                                `);
+                            }
+                        });
+                    });
                 });
+            });
         });
 
     </script>
@@ -83,7 +156,8 @@
                 <li><a href="#">會員專區</a></li>
 
                 <li><a href="index-shoppingcart.html">購物車</a></li>
-<li><a href="index-login.html">Sign In</a></li>            </ul>
+                <li><a href="index-login.html">Sign In</a></li>
+            </ul>
             <div class="float-right">
                 <form action="" class="search-box">
                     <input type="text" class="text search-input" placeholder="Type here to search..." />
