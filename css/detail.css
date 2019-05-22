@@ -65,3 +65,6 @@ body {
 .table-border{
     border: 0;
 }
+.method{
+    line-height:240%;
+}
