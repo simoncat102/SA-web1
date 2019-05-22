@@ -43,7 +43,7 @@
                         $('#product').append(
                             `
               <div class="card">
-                  <a href="index-detail.html" class="card-info">
+                  <a href="index-detail.html?id=${item.id}" class="card-info">
                   <img src="${item.fields.Pro_image}" alt="Avatar" class="goods">
                   <div class="container">
                       <h4 class="text-style"><b>${item.fields.Pro_name}</b></h4>
@@ -56,6 +56,7 @@
                     })
                 });
         });
+
     </script>
 
 
@@ -295,4 +296,6 @@
 
     <script src="js/index.js"></script>
 
-</body></html>
+</body>
+
+</html>
