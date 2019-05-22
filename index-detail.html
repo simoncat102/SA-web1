@@ -21,7 +21,44 @@
     <link href="css/landing-page.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- airtable -->
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="airtable.browser.js"></script>
+    <script>
+        $(document).ready(function() {
+            const url = new URL(window.location.href);
+            const id = url.searchParams.get("id");
+            fetch('https://api.airtable.com/v0/appZpGVmdenKv27KK/Product/' + id, {
+                    headers: {
+                        "Authorization": "Bearer keyYUsB5KpziWQeW5"
+                    }
+                })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    console.log('data:', data);
+                    $('#img').append(
+                        `
+                    <img class="img2" src="${data.fields.Pro_image}">
+                        <br>
+                        <br>
+                        <h3 class="t1" id="name">${data.fields.Pro_name}</h3>
+                        <button type="button" class="btn btn-color-detail t2">加入購物車</button>    
+                    `);
+                    $('#procedure').append(
+                        `
+                    <tr>
+                        <td class="text">作法</td>
+                    </tr>
+                    <tr>
+                        <td class="method">${data.fields.Pro_procedure}</td>
+                    <tr>
+                    `);
+                })
+        });
 
+    </script>
 </head>
 
 <body>
@@ -52,15 +89,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-6 p-3 md-auto">
+            <div class="col-md-6 p-3 md-auto" id="img">
+                <!--
                 <img class="img2" src="img/detail.jpg">
                 <br>
                 <br>
 
-                <h3 class="t1">宮保蝦仁</h3>
+                <h3 class="t1" id="name"></h3>
 
                 <button type="button" class="btn btn-color-detail t2">加入購物車
                 </button>
+-->
 
 
 
@@ -104,26 +143,24 @@
                         <td>醬汁：醬油、糖、豆瓣醬、香油、米酒、太白粉</td>
                     </tr>
                 </table>
-                <table class="table table-borderless">
+                <table class="table table-borderless" id="procedure">
 
-                    <tr>
-                        <td class="text">作法</td>
-                    </tr>
-                    <tr>
-                        <td class="method">1. 乾辣椒對切取出辣椒籽，花生去膜。
-                            <br>
-                            2. 蝦仁去腸泥吸乾水粉後，加入太白粉與蛋白抓勻。<br>
-                            3. 將蔥切花，薑、蒜切末，將其餘醬汁與其混合。<br>
-                            4. 熱油鍋，爆香花椒粒炒出香味，再加乾辣椒籽爆香，瀝出花椒油備用。<br>
-                            5. 起油鍋，蝦仁下鍋過油約8秒即撈
-                            出，瀝油。<br>
-                            6. 以花椒油爆香薑末，加乾辣椒炒至膨脹，放入蒜末、蝦仁、醬汁炒勻，起鍋前倒入花生，淋少許白醋拌勻，灑蔥花即可。</td>
-                    </tr>
+                    <!--
+<tr>
+    <td class="text">作法</td>
+</tr>
+<tr>
+    <td class="method">1. 乾辣椒對切取出辣椒籽，花生去膜。
+        <br> 2. 蝦仁去腸泥吸乾水粉後，加入太白粉與蛋白抓勻。<br> 3. 將蔥切花，薑、蒜切末，將其餘醬汁與其混合。<br> 4. 熱油鍋，爆香花椒粒炒出香味，再加乾辣椒籽爆香，瀝出花椒油備用。<br> 5. 起油鍋，蝦仁下鍋過油約8秒即撈 出，瀝油。
+        <br> 6. 以花椒油爆香薑末，加乾辣椒炒至膨脹，放入蒜末、蝦仁、醬汁炒勻，起鍋前倒入花生，淋少許白醋拌勻，灑蔥花即可。</td>
+</tr>
+-->
 
                 </table>
             </div>
         </div>
-    </div> <!-- Footer -->
+    </div>
+    <!-- Footer -->
     <footer class="footer bg-light">
         <div class="container">
             <div class="row">
