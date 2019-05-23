@@ -105,10 +105,13 @@
                                 // *****在全部shop中找出此mat的pro*****
                                 console.log('productMaterial:', productMaterial);
                                 let mat = productMaterial.map(item => item.fields.Mat_id);
+                                let namearr = [];
                                 $.each(mat, (index, m) => {
                                     const matId = m[0];
                                     materialProduct = materialList.filter(matpro => matpro.id === matId);
-                                    console.log("materialProduct:", materialProduct);
+                                    const name = materialProduct[0].fields.Mat_name;
+                                    namearr[index] = name;
+                                    console.log("materialProduct:", namearr[index]);
                                 });
                                 $('#product').append(
                                     `
@@ -117,7 +120,11 @@
                                         <img src="${Pro_image}" alt="Avatar" class="goods">
                                         <div class="container">
                                             <h4 class="text-style"><b>${Pro_name}</b></h4>
-                                            <p>${materialProduct.map(item => item.fields.Mat_name)}等材料！</p>
+                                            <p>
+                                                ${$.each(namearr, (index, i) =>{
+                                                    namearr[index];
+                                                })}
+                                            </p>
                                             <p><b>$${Pro_price}</b></p>
                                         </div>
                                     </a>
@@ -131,7 +138,17 @@
         });
 
     </script>
-
+<!--
+${$.each(mat, (index, m) => {
+                                                    const matId = m[0];
+                                                    materialProduct = materialList.filter(matpro => matpro.id === matId);
+                                                    console.log("materialProduct:", materialProduct);
+                                                    let name = materialProduct[0].fields.Mat_name;
+                                                    console.log("name",name);
+                                                    name = materialProduct.map(item => name)[0];
+                                                    console.log("map", name);
+                                                })}
+-->
 
 
 
