@@ -59,6 +59,78 @@
                     `);
                 })
         });
+        const url = new URL(window.location.href);
+        const id = url.searchParams.get("id");
+        const headers = {
+            headers: {
+                "Authorization": "Bearer keyabYPbrYnSWmK9v"
+            }
+        };
+        const getProductListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Product';
+        const getOrderdetailsListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Orderdetails';
+        const getProductList = async () => {
+            const response = await fetch(getProductListAPI, headers);
+            const data = await response.json();
+            return data;
+        }
+        const getOrderdetailsList = async () => {
+            const response = await fetch(getOrderdetailsListAPI + '?view=Grid%20view', headers);
+            const data = await response.json();
+            return data;
+        }
+
+        $(document).ready(function() {
+            getOrderdetailsList().then(orderdetailsListData => { // *****先取得全部Order*****
+                const orderdetailsList = orderdetailsListData.records;
+                console.log('orderdetailsList:', orderdetailsList);
+                getProductList().then(productListData => { // *****再取得全部Customer*****
+                    const productList = productListData.records;
+                    console.log('productList:', productList);
+                    var date;
+                    var way;
+                    $.each(productList, (index, product) => {
+                        let productOrderdetails = [];
+                        const productId = product.id;
+                        const {
+                            Pro_id,
+                            Orderdetails
+                        } = product.fields;
+                        const pro = product.id;
+                        let i = 0;
+                        if(pro === id){
+                            i = index;
+                            //console.log(pro);
+                            way = product.fields.Pro_Pre_way;
+                            //console.log(way);
+                        }
+                        if (Orderdetails) { // *****如果此customer有Order
+                            //console.log("hh", orderdetailsList.filter(orderdetails => orderdetails.fields.Pro_id));
+                            let order = orderdetailsList.filter(orderdetails => orderdetails.fields.Pro_id);
+                            $.each(order, (index, o) => {
+                                const orId = o.fields.Pro_id[0];
+                                let j = 0;
+                                if(orId === id){
+                                    j = index;
+                                    //console.log(orId);
+                                    productOrderdetails = orderdetailsList.filter(or => orId === id);
+                                    date = productOrderdetails[j].fields.Pro_expire_day;
+                                }
+                            });
+                            //productOrderdetails = orderdetailsList.filter(orderdetails => orderdetails.fields.Pro_id === id); // *****在全部Order中找出此customer的Order*****
+                            //console.log('productOrderdetails:', date);
+                        }
+                    });
+                    $('#preserve').append(`
+                        <tr class="text">
+                            <td>保存期限</td>
+                        </tr>
+                        <tr>
+                            <td>各項食材以${way}保存${date}天</td>
+                        </tr>
+                    `);
+                });
+            });
+        });
     </script>
 </head>
 
@@ -132,13 +204,15 @@
                     </tr>
                 </table>
 
-                <table class="table table-borderless">
+                <table class="table table-borderless" id="preserve">
+<!--
                     <tr class="text">
                         <td>保存期限</td>
                     </tr>
                     <tr>
                         <td>各項食材以冷藏保存四天</td>
                     </tr>
+-->
                 </table>
                 <!--
                 <table class="table table-borderless">
