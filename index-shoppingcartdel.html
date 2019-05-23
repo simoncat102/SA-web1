@@ -25,6 +25,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
+        const url = new URL(window.location.href);
+        const id = url.searchParams.get("id");
         const headers = {
             headers: {
                 "Authorization": "Bearer keyabYPbrYnSWmK9v"
@@ -42,7 +44,7 @@
             const data = await response.json();
             return data;
         }
-
+        
         function sum(sumeach, sumall) {
             return parseInt(sumeach) + parseInt(sumall);
         }
@@ -68,7 +70,6 @@
                         if (Shoppingcart) { // *****如果此pro有shoppingcart
                             productShoppingcart = shoppingcartList.filter(shoppingcart => shoppingcart.fields.name[0] === productId); // *****在全部shop中找出此pro的shop*****
                             console.log('productShoppingcart:', productShoppingcart);
-                            const shoppingcartId = productShoppingcart[0].id;
                             sumeach = productShoppingcart.map(item => item.fields.Shop_amount * Pro_price);
                             sumall = sum(sumall, sumeach);
                             var amount = productShoppingcart.map(item => (item.fields.Shop_amount));
@@ -88,7 +89,7 @@
                                     <td rowspan="4"  width="240px"><img class="goods" src="${Pro_image}"></td>
                                     <td class="goods-price">$${Pro_price}</td>
                                     
-                                    <td align="right"><a href="index-shoppingcartdel.html?id=${shoppingcartId}"><buttom class="fas fa-trash-alt"></buttom></a></td>
+                                    <td align="right"><a href="index-shoppingcart.html?id=${productId}"><buttom class="fas fa-trash-alt"></buttom></a></td>
 
                                 </tr>
                                 <tr>
