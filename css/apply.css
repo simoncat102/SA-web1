@@ -1,0 +1,32 @@
+.container8 {
+    margin-top: 5%;
+    margin-right: 15%;
+    margin-left: 15%;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 100%;
+    max-width: 1140px; // 隨螢幕尺寸而變，當螢幕尺寸 ≥ 1200px 時是 1140px。
+}
+.body {
+    background-color: lightgray;
+}
+
+.left{
+    margin-left:-100px;
+}
+.btn-cart{
+    color: #fff;
+    background-color: #6FA09E;
+   
+    width: 70%;
+    margin-top: -5px;
+}
+
+
+.btn-cart:hover{
+    background-color: #8DCCCA;
+    color:#fff;
+}
+.text{
+   vertical-align: bottom;
+}
