@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -21,11 +20,11 @@
     <link href="css/landing-page.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/checkout.css">
-    
+
 </head>
 
 <body class="body">
-       <header id="header-1" class="header">
+    <header id="header-1" class="header">
 
         <nav class="header-nav">
             <a href="index.html">
@@ -47,78 +46,63 @@
             </div>
         </nav>
     </header>
-        <div class="containers">
-            <div class="row">
-                <div class="col-6">
-                    <h4>送貨地址</h4>
-                    <table class="table">
-                        <tr>
-                            <td><label for="last name">姓</label></td>
-                            <td><label for="first name">名</label></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" id="last name" class="form-control"></td>
-                            <td><input type="text" id="first" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="phonenumber">聯絡電話</label></td>
-                            <td><label for="Dday">配送日期</label></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" id="phonenumber" class="form-control" maxlength="10"></td>
-                            <td><input type="date" id="Dday" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="Atime">可配送時間</label></td>
-                            <td><label for="way">配送方式</label></td>
-                        </tr>
-                        <tr>
-                            <td><input type="time" id="Atime" class="form-control"></td>
-                            <td><input type="text" id="way" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="direction">居住地址</label></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><input type="text" id="direction" class="form-control" placeholder="鄉、鎮、市、街道名稱、門牌號碼、樓層"></td>
-                            <td></td>
-                        </tr>
+    <div class="containers">
+        <div class="row">
+            <div class="col-6">
+                <h4>送貨地址</h4>
+                <table class="table">
 
-                    </table>
+                    <tr>
+                        <td><label for="last name">姓：</label><input type="text" id="last name" class="form-control"></td>
+                        <td><label for="first name">名：</label><input type="text" id="first" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="phonenumber">聯絡電話：</label><input type="text" id="phonenumber" class="form-control" maxlength="10"></td>
+                        <td><label for="Dday">配送日期：</label><input type="date" id="Dday" class="form-control"></td>
+                    </tr>
 
-                </div>
-                <div class="col-6">
-                    <h4>帳單地址</h4>
-                    <table class="table">
-                        <tr>
-                            <td><label for="last name">姓</label></td>
-                            <td><label for="first name">名</label></td>
-                        </tr>
-                        <tr>
-                            <td>居住地址</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><input type="text" id="last name" class="form-control" placeholder="鄉、鎮、市、街道名稱"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><input type="text" id="last name" class="form-control" placeholder="門牌號碼、樓層、郵遞區號"></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>訂單備註</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><textarea class="textarea"></textarea></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
+                    <tr>
+                        <td><label for="way">配送方式：</label><input type="text" id="Atime" class="form-control"></td>
+                        <td><label for="Atime">可配送時間：</label><input type="time" id="way" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><label for="direction">居住地址：</label><input type="text" id="direction" class="form-control" placeholder="鄉、鎮、市、街道名稱、門牌號碼、樓層"></td>
+                        <td></td>
+                    </tr>
+
+                </table>
 
             </div>
+            <div class="col-6">
+                <h4>帳單地址</h4>
+                <table class="table">
+                    <tr>
+                        <td><label for="last name">姓：</label><input type="text" id="last name" class="form-control"></td>
+                        <td><label for="first name">名：</label><input type="text" id="first" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><label for="direction">居住地址：</label><input type="text" id="last name" class="form-control" placeholder="鄉、鎮、市、街道名稱"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="text" id="last name" class="form-control" placeholder="門牌號碼、樓層、郵遞區號"></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <h4><label for="ps">訂單備註</label></h4> <textarea class="textarea" placeholder="您對於訂單的特殊要求。
+例: 特殊的送貨要求等"></textarea>
+                        </td>
+                        <td width="40%">
+                            <buttom class="btn btn-cart">確認送出</buttom>
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+
+        </div>
 
     </div>
 </body></html>
