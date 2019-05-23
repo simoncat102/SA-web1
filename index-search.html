@@ -101,6 +101,7 @@
                                 Pro_material
                             } = product.fields;
                             if (Pro_material) { // *****如果此mat有pro
+                                console.log(promatList.filter(promat => promat.fields.Pro_id[0]));
                                 productMaterial = promatList.filter(promat => promat.fields.Pro_id[0] === productId);
                                 // *****在全部shop中找出此mat的pro*****
                                 console.log('productMaterial:', productMaterial);
