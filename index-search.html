@@ -28,34 +28,6 @@
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
     <script src="airtable.browser.js"></script>
     <script>
-        //        $(document).ready(function() {
-        //            fetch('https://api.airtable.com/v0/appZpGVmdenKv27KK/Product?&view=Grid%20view', {
-        //                    headers: {
-        //                        "Authorization": "Bearer keyYUsB5KpziWQeW5"
-        //                    }
-        //                })
-        //                .then(function(response) {
-        //                    return response.json();
-        //                })
-        //                .then(function(data) {
-        //                    console.log('data:', data);
-        //                    $.each(data.records, function(i, item) {
-        //                        $('#product').append(
-        //                            `
-        //              <div class="card">
-        //                  <a href="index-detail.html?id=${item.id}" class="card-info">
-        //                  <img src="${item.fields.Pro_image}" alt="Avatar" class="goods">
-        //                  <div class="container">
-        //                      <h4 class="text-style"><b>${item.fields.Pro_name}</b></h4>
-        //                      <p>不知道有什麼東西可以吃</p>
-        //                      <p><b>$${item.fields.Pro_price}</b></p>
-        //                  </div>
-        //                  </a>
-        //              </div>
-        //        `);
-        //                    })
-        //                });
-        //        });
         const headers = {
             headers: {
                 "Authorization": "Bearer keyabYPbrYnSWmK9v"
@@ -72,6 +44,7 @@
         const getPromatList = async () => {
             const response = await fetch(getPromatListAPI + '?view=Grid%20view', headers);
             const data = await response.json();
+            console.log('data:',data);
             return data;
         }
         const getMaterialList = async () => {
@@ -83,7 +56,7 @@
         $(document).ready(function() {
             getPromatList().then(promatListData => { // *****先取得全部promat*****
                 const promatList = promatListData.records;
-                console.log('promatList:', promatList);
+//                console.log('promatList:', promatList);
                 getMaterialList().then(meterialListData => { // *****再取得全部mat*****
                     const materialList = meterialListData.records;
                     console.log('meterialList:', materialList);

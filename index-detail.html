@@ -23,42 +23,7 @@
 
     <!-- airtable -->
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
-    <script src="airtable.browser.js"></script>
     <script>
-        $(document).ready(function() {
-            const url = new URL(window.location.href);
-            const id = url.searchParams.get("id");
-            fetch('https://api.airtable.com/v0/appZpGVmdenKv27KK/Product/' + id, {
-                    headers: {
-                        "Authorization": "Bearer keyYUsB5KpziWQeW5"
-                    }
-                })
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    console.log('data:', data);
-                    $('#img').append(
-                        `
-                    <img align="center" class="img2" src="${data.fields.Pro_image}">
-                        <br>
-                        <br>
-                    <div align="center" class="name">
-                        <h3 id="name" class="t1">${data.fields.Pro_name}  </h3>
-                        <button type="button" class="btn btn-color-detail">加入購物車</button>    
-                    </div>
-                    `);
-                    $('#procedure').append(
-                        `
-                    <tr>
-                        <td class="text">作法</td>
-                    </tr>
-                    <tr>
-                        <td class="method">${data.fields.Pro_procedure}</td>
-                    <tr>
-                    `);
-                })
-        });
         const url = new URL(window.location.href);
         const id = url.searchParams.get("id");
         const headers = {
@@ -131,6 +96,40 @@
                 });
             });
         });
+        $(document).ready(function() {
+            const url = new URL(window.location.href);
+            const id = url.searchParams.get("id");
+            fetch('https://api.airtable.com/v0/appZpGVmdenKv27KK/Product/' + id, {
+                    headers: {
+                        "Authorization": "Bearer keyYUsB5KpziWQeW5"
+                    }
+                })
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    console.log('data:', data);
+                    $('#img').append(
+                        `
+                    <img align="center" class="img2" src="${data.fields.Pro_image}">
+                        <br>
+                        <br>
+                    <div align="center" class="name">
+                        <h3 id="name" class="t1">${data.fields.Pro_name}  </h3>
+                        <button type="button" class="btn btn-color-detail">加入購物車</button>    
+                    </div>
+                    `);
+                    $('#procedure').append(
+                        `
+                    <tr>
+                        <td class="text">作法</td>
+                    </tr>
+                    <tr>
+                        <td class="method">${data.fields.Pro_procedure}</td>
+                    <tr>
+                    `);
+                })
+        });
     </script>
 </head>
 
@@ -180,15 +179,13 @@
 
 
             <div class="col-md-6 mr-auto text2">
-                <table class="table table-borderless">
+                <table class="table table-borderless" id="content">
                     <tr>
                         <td class="text">內容物</td>
-
                     </tr>
                     <tr>
                         <td>蝦仁 18隻</td>
                         <td>辣椒 適量</td>
-
 
                     </tr>
                     <tr>
