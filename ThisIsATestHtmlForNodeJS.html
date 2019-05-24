@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>食趣 - 一人的食材外送</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/landing-page.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/search_card.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="build/airtable.browser.js"></script>
+
+</head>
+
+<body>
+    <!--Navigation-->
+
+    <header id="header-1" class="header">
+        <nav class="header-nav">
+            <a href="index.html">
+                <img class="logo" src="img/logo.png">
+            </a>
+            <div class="search-button">
+                <i class="fas fa-search search-toggle" data-selector="#header-1"></i>
+            </div>
+            <ul class="menu">
+                <li><a href="index-search.html">食譜</a></li>
+                <li><a href="#">會員專區</a></li>
+
+                <li><a href="index-shoppingcart.html">購物車</a></li>
+                <li><a href="index-login.html">Sign In</a></li>
+            </ul>
+            <div class="float-right">
+                <form action="" class="search-box">
+                    <input type="text" class="text search-input" placeholder="Type here to search..." />
+                </form>
+            </div>
+        </nav>
+    </header>
+
+
+    <!--    shopping cart-->
+
+
+
+
+
+
+
+    <!--    shopping cart end-->
+
+    <div class="container1">
+        <div class="row">
+            <div class="col-lg-2">
+                <br>
+                <br>
+                <div class="list-group">
+                    <ul class="nav flex-column">
+                        <h5>選擇所需設備</h5>
+                        <li class="nav-item">
+                            <input type="checkbox"> 不限
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 烤箱
+
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 微波爐
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 瓦斯爐
+                        </li>
+                        <li class="nav_item"></li>
+                    </ul>
+                    <br><br>
+                    <ul class="nav flex-column">
+                        <h5>選擇菜色類型</h5>
+                        <li class="nav-item">
+                            <input type="checkbox"> 美式
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 中式
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 日式
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 美式
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 泰式
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 法式
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 義式
+                        </li>
+                        <li class="nav-item">
+                            <input type="checkbox"> 客家菜
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.col-lg-3 -->
+            <div class="col bg-gray">
+                <nav class="navbar navbar-inverse search-edit-space bg-white">
+                    <div class="container-fluid">
+                        <div class="navbar-header search-choice">
+                            <!--價格-->
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>價格: </td>
+                                    <td width="20%">
+                                        <select class="browser-default custom-select">
+                                            <option selected value="default">預設</option>
+                                            <option value="highToLow">由高至低</option>
+                                            <option value="lowToHigh">由低至高</option>
+                                        </select>
+                                    </td>
+                                    <td>評價: </td>
+                                    <td width="20%">
+                                        <select class="browser-default custom-select">
+                                            <option selected value="default">預設</option>
+                                            <option value="highToLow">由高至低</option>
+                                            <option value="lowToHigh">由低至高</option>
+                                        </select>
+                                    </td>
+                                    <td>難易度: </td>
+                                    <td width="20%">
+                                        <select class="browser-default custom-select">
+                                            <option selected value="default">預設</option>
+                                            <option value="highToLow">由高至低</option>
+                                            <option value="lowToHigh">由低至高</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </nav>
+
+
+                <div class="row search-space" id="product">
+                    <!-- <div class="card">
+                        <a href="index-detail.html" class="card-info">
+                            <img src="img/food1.jpg" alt="Avatar" style="width:100%">
+                            <div class="container">
+                                <h4 class="text-style"><b>大阪燒</b></h4>
+                                <p>高麗菜、培根、餅皮</p>
+                                <p><b>$140</b></p>
+                            </div>
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a class="info-text" href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a class="info-text" href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a class="info-text" href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#" class="info-text">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a class="info-text" href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a class="info-text" href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="info-text" href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src="js/index.js"></script>
+
+</body>
+<script>
+    var Airtable = require('airtable');
+    var base = new Airtable({
+        apiKey: 'keyabYPbrYnSWmK9v'
+    }).base('appZpGVmdenKv27KK');
+
+    base('Pro_material').select({
+        //maxRecords: 110,
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+        records.forEach(function (recordmatpro) {
+            base('Material').select({
+                //maxRecords: 110,
+                view: "Grid view"
+            }).eachPage(function page(records, fetchNextPage) {
+                records.forEach(function (recordmat) {
+                    base('Product').select({
+                        //maxRecords: 100,
+                        view: "Grid view"
+                    }).eachPage(function page(records, fetchNextPage) {
+                        records.forEach(function (record) {
+                            var productId = record.id;
+                            $('#product').append(
+                                `
+                        <div class="card">
+                        <a href="index-detail.html?id=${productId}" class="card-info">
+                        <img src="${record.get('Pro_image')}" alt="Avatar" class="goods">
+                        <div class="container">
+                        <h4 class="text-style"><b>${record.get('Pro_name')}</b></h4>
+                        <p>又不知道可以吃什么了哭
+                        </p>
+                        <p><b>$${record.get('Pro_price')}</b></p>
+                        </div>
+                        </a>
+                        </div>
+                    `);
+                            //console.log('Retrieved', record.get('Pro_material'));
+                        });
+                        fetchNextPage();
+
+                    }, function done(err) {
+                        if (err) {
+                            console.error(err);
+                            return;
+                        }
+                    });
+                });
+            });
+        });
+    });
+</script>
+
+</html>
