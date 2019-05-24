@@ -233,16 +233,6 @@
         apiKey: 'keyabYPbrYnSWmK9v'
     }).base('appZpGVmdenKv27KK');
 
-    base('Pro_material').select({
-        //maxRecords: 110,
-        view: "Grid view"
-    }).eachPage(function page(records, fetchNextPage) {
-        records.forEach(function (recordmatpro) {
-            base('Material').select({
-                //maxRecords: 110,
-                view: "Grid view"
-            }).eachPage(function page(records, fetchNextPage) {
-                records.forEach(function (recordmat) {
                     base('Product').select({
                         //maxRecords: 100,
                         view: "Grid view"
@@ -273,10 +263,6 @@
                             return;
                         }
                     });
-                });
-            });
-        });
-    });
 </script>
 
 </html>
