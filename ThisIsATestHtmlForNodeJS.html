@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="css/search_card.css">
 
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
-    <script src="build/airtable.browser.js"></script>
+    <script src="node_modules/airtable/build/airtable.browser.js"></script>
 
 </head>
 
@@ -233,36 +233,72 @@
         apiKey: 'keyabYPbrYnSWmK9v'
     }).base('appZpGVmdenKv27KK');
 
-                    base('Product').select({
-                        //maxRecords: 100,
-                        view: "Grid view"
-                    }).eachPage(function page(records, fetchNextPage) {
-                        records.forEach(function (record) {
-                            var productId = record.id;
-                            $('#product').append(
-                                `
+    base('Pro_material').select({
+        //maxRecords: 110,
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+        console.log(records);
+        base('Material').select({
+            //maxRecords: 100,
+            view: "Grid view"
+        }).eachPage(function page(ma, fetchNextPage) {
+            console.log(ma);
+            base('Product').select({
+                //maxRecords: 100,
+                view: "Grid view"
+            }).eachPage(function page(re, fetchNextPage) {
+                re.forEach(function (record, j) {
+                    var productId = record.id;
+                    var Pro_materialId = record.get("Pro_material");
+                    //console.log(Pro_materialId);
+                    let linkedmatID = [];
+                    Pro_materialId.forEach(function (promat, index) {
+                        console.log(Pro_materialId[index]);
+                        records.forEach(function (promat, i) {
+                            if (records[i].id === Pro_materialId[
+                                    index]) {
+                                linkedmatID[i] = records[i].fields
+                                    .Mat_id;
+                            }
+                        });
+                    });
+                    var namearr = [];
+                    let h = 0;
+                    //console.log(linkedmatID);
+                    linkedmatID.forEach(function (materials, z) {
+                        console.log(linkedmatID[z]);
+                        ma.forEach(function (material, m) {
+                            if (ma[m].id === linkedmatID[z][0]) {
+                                //console.log(j);
+                                namearr[h] = ma[m].fields.Mat_name;
+                                h = h + 1;
+                            }
+                        });
+                    });
+                    console.log(namearr);
+                    $('#product').append(
+                        `
                         <div class="card">
                         <a href="index-detail.html?id=${productId}" class="card-info">
-                        <img src="${record.get('Pro_image')}" alt="Avatar" class="goods">
-                        <div class="container">
+                        <img src="${record.get('Pro_image')}" alt="Avatar" style="width:100%">                        <div class="container">
                         <h4 class="text-style"><b>${record.get('Pro_name')}</b></h4>
-                        <p>又不知道可以吃什么了哭
-                        </p>
+                        <p>${namearr}</p>
                         <p><b>$${record.get('Pro_price')}</b></p>
                         </div>
                         </a>
                         </div>
                     `);
-                            //console.log('Retrieved', record.get('Pro_material'));
-                        });
-                        fetchNextPage();
-
-                    }, function done(err) {
-                        if (err) {
-                            console.error(err);
-                            return;
-                        }
-                    });
+                    //console.log('Retrieved', record.get('Pro_material'));
+                });
+                fetchNextPage();
+            }, function done(err) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+            });
+        });
+    });
 </script>
 
 </html>

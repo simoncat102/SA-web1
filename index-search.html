@@ -42,7 +42,7 @@
             return data;
         }
         const getPromatList = async () => {
-            const response = await fetch(getPromatListAPI + '?view=Grid%20view', headers);
+            const response = await fetch(getPromatListAPI , headers);
             const data = await response.json();
             console.log('data:',data);
             return data;
@@ -56,7 +56,7 @@
         $(document).ready(function() {
             getPromatList().then(promatListData => { // *****先取得全部promat*****
                 const promatList = promatListData.records;
-//                console.log('promatList:', promatList);
+//              console.log('promatList:', promatList);
                 getMaterialList().then(meterialListData => { // *****再取得全部mat*****
                     const materialList = meterialListData.records;
                     console.log('meterialList:', materialList);
