@@ -16,124 +16,22 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
 
     <!-- Custom styles for this template -->
     <link href="css/landing-page.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/search_card.css">
 
-
     <!-- airtable -->
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
-    <script src="airtable.browser.js"></script>
-    <script>
-        const headers = {
-            headers: {
-                "Authorization": "Bearer keyabYPbrYnSWmK9v"
-            }
-        };
-        const getProductListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Product'; //customer==product
-        const getPromatListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Pro_material'; //order==pro_material
-        const getMaterialListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Material'; //order==material
-        const getProductList = async () => {
-            const response = await fetch(getProductListAPI + '?view=Grid%20view', headers);
-            const data = await response.json();
-            return data;
-        }
-        const getPromatList = async () => {
-            const response = await fetch(getPromatListAPI , headers);
-            const data = await response.json();
-            console.log('data:',data);
-            return data;
-        }
-        const getMaterialList = async () => {
-            const response = await fetch(getMaterialListAPI + '?view=Grid%20view', headers);
-            const data = await response.json();
-            return data;
-        }
-
-        $(document).ready(function() {
-            getPromatList().then(promatListData => { // *****先取得全部promat*****
-                const promatList = promatListData.records;
-//              console.log('promatList:', promatList);
-                getMaterialList().then(meterialListData => { // *****再取得全部mat*****
-                    const materialList = meterialListData.records;
-                    console.log('meterialList:', materialList);
-                    getProductList().then(productListData => { // *****再取得全部pro*****
-                        const productList = productListData.records;
-                        console.log('productList:', productList);
-                        $.each(productList, (index, product) => {
-                            let productMaterial = [];
-                            let materialProduct = [];
-                            const productId = product.id;
-                            const {
-                                Pro_name,
-                                Pro_price,
-                                Pro_image,
-                                Pro_material
-                            } = product.fields;
-                            if (Pro_material) { // *****如果此mat有pro
-                                console.log(promatList.filter(promat => promat.fields.Pro_id[0]));
-                                productMaterial = promatList.filter(promat => promat.fields.Pro_id[0] === productId);
-                                // *****在全部shop中找出此mat的pro*****
-                                console.log('productMaterial:', productMaterial);
-                                let mat = productMaterial.map(item => item.fields.Mat_id);
-                                let namearr = [];
-                                $.each(mat, (index, m) => {
-                                    const matId = m[0];
-                                    materialProduct = materialList.filter(matpro => matpro.id === matId);
-                                    const name = materialProduct[0].fields.Mat_name;
-                                    namearr[index] = name;
-                                    console.log("materialProduct:", namearr[index]);
-                                });
-                                $('#product').append(
-                                    `
-                                <div class="card">
-                                    <a href="index-detail.html?id=${productId}" class="card-info">
-                                        <img src="${Pro_image}" alt="Avatar" class="goods">
-                                        <div class="container">
-                                            <h4 class="text-style"><b>${Pro_name}</b></h4>
-                                            <p>
-                                                ${$.each(namearr, (index, i) =>{
-                                                    namearr[index];
-                                                })}
-                                            </p>
-                                            <p><b>$${Pro_price}</b></p>
-                                        </div>
-                                    </a>
-                                </div>
-                                `);
-                            }
-                        });
-                    });
-                });
-            });
-        });
-
-    </script>
-<!--
-${$.each(mat, (index, m) => {
-                                                    const matId = m[0];
-                                                    materialProduct = materialList.filter(matpro => matpro.id === matId);
-                                                    console.log("materialProduct:", materialProduct);
-                                                    let name = materialProduct[0].fields.Mat_name;
-                                                    console.log("name",name);
-                                                    name = materialProduct.map(item => name)[0];
-                                                    console.log("map", name);
-                                                })}
--->
-
-
+    <script src="node_modules/airtable/build/airtable.browser.js"></script>
 
 </head>
 
 <body>
-
-
-
     <!--Navigation-->
-
     <header id="header-1" class="header">
         <nav class="header-nav">
             <a href="index.html">
@@ -156,27 +54,12 @@ ${$.each(mat, (index, m) => {
             </div>
         </nav>
     </header>
-
-
-    <!--    shopping cart-->
-
-
-
-
-
-
-
-    <!--    shopping cart end-->
-
     <div class="container1">
-
         <div class="row">
             <div class="col-lg-2">
                 <br>
                 <br>
                 <div class="list-group">
-
-
                     <ul class="nav flex-column">
                         <h5>選擇所需設備</h5>
                         <li class="nav-item">
@@ -221,22 +104,15 @@ ${$.each(mat, (index, m) => {
                         <li class="nav-item">
                             <input type="checkbox"> 客家菜
                         </li>
-
-
                     </ul>
                 </div>
-
             </div>
             <!-- /.col-lg-3 -->
-
             <div class="col bg-gray">
-
-
                 <nav class="navbar navbar-inverse search-edit-space bg-white">
                     <div class="container-fluid">
                         <div class="navbar-header search-choice">
-                            <!--                           價格-->
-
+                            <!--價格-->
                             <table class="table table-borderless">
                                 <tr>
                                     <td>價格: </td>
@@ -245,8 +121,6 @@ ${$.each(mat, (index, m) => {
                                             <option selected value="default">預設</option>
                                             <option value="highToLow">由高至低</option>
                                             <option value="lowToHigh">由低至高</option>
-
-
                                         </select>
                                     </td>
                                     <td>評價: </td>
@@ -255,8 +129,6 @@ ${$.each(mat, (index, m) => {
                                             <option selected value="default">預設</option>
                                             <option value="highToLow">由高至低</option>
                                             <option value="lowToHigh">由低至高</option>
-
-
                                         </select>
                                     </td>
                                     <td>難易度: </td>
@@ -265,43 +137,24 @@ ${$.each(mat, (index, m) => {
                                             <option selected value="default">預設</option>
                                             <option value="highToLow">由高至低</option>
                                             <option value="lowToHigh">由低至高</option>
-
-
                                         </select>
                                     </td>
                                 </tr>
-
                             </table>
-
-
-
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </nav>
-
-
                 <div class="row search-space" id="product">
-
                     <!-- <div class="card">
-            <a href="index-detail.html" class="card-info">
-              <img src="img/food1.jpg" alt="Avatar" style="width:100%">
-              <div class="container">
-                <h4 class="text-style"><b>大阪燒</b></h4>
-                <p>高麗菜、培根、餅皮</p>
-
-                <p><b>$140</b></p>
-
-              </div>
-            </a>
-          </div> -->
-
+                        <a href="index-detail.html" class="card-info">
+                            <img src="img/food1.jpg" alt="Avatar" style="width:100%">
+                            <div class="container">
+                                <h4 class="text-style"><b>大阪燒</b></h4>
+                                <p>高麗菜、培根、餅皮</p>
+                                <p><b>$140</b></p>
+                            </div>
+                        </a>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -357,9 +210,80 @@ ${$.each(mat, (index, m) => {
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
     <script src="js/index.js"></script>
 
 </body>
+<script>
+    var Airtable = require('airtable');
+    var base = new Airtable({
+        apiKey: 'keyabYPbrYnSWmK9v'
+    }).base('appZpGVmdenKv27KK');
 
+    base('Pro_material').select({
+        //maxRecords: 110,
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+        console.log(records);
+        base('Material').select({
+            //maxRecords: 100,
+            view: "Grid view"
+        }).eachPage(function page(ma, fetchNextPage) {
+            console.log(ma);
+            base('Product').select({
+                //maxRecords: 100,
+                view: "Grid view"
+            }).eachPage(function page(re, fetchNextPage) {
+                re.forEach(function (record, j) {
+                    var productId = record.id;
+                    var Pro_materialId = record.get("Pro_material");
+                    //console.log(Pro_materialId);
+                    let linkedmatID = [];
+                    Pro_materialId.forEach(function (promat, index) {
+                        console.log(Pro_materialId[index]);
+                        records.forEach(function (promat, i) {
+                            if (records[i].id === Pro_materialId[
+                                    index]) {
+                                linkedmatID[i] = records[i].fields
+                                    .Mat_id;
+                            }
+                        });
+                    });
+                    var namearr = [];
+                    let h = 0;
+                    //console.log(linkedmatID);
+                    linkedmatID.forEach(function (materials, z) {
+                        console.log(linkedmatID[z]);
+                        ma.forEach(function (material, m) {
+                            if (ma[m].id === linkedmatID[z][0]) {
+                                //console.log(j);
+                                namearr[h] = ma[m].fields.Mat_name;
+                                h = h + 1;
+                            }
+                        });
+                    });
+                    console.log(namearr);
+                    $('#product').append(
+                        `
+                        <div class="card">
+                        <a href="index-detail.html?id=${productId}" class="card-info">
+                        <img src="${record.get('Pro_image')}" alt="Avatar" style="width:100%">                        <div class="container">
+                        <h4 class="text-style"><b>${record.get('Pro_name')}</b></h4>
+                        <p>${namearr}</p>
+                        <p><b>$${record.get('Pro_price')}</b></p>
+                        </div>
+                        </a>
+                        </div>
+                    `);
+                    //console.log('Retrieved', record.get('Pro_material'));
+                });
+                fetchNextPage();
+            }, function done(err) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+            });
+        });
+    });
+</script>
 </html>

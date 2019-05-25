@@ -14,128 +14,21 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
 
     <!-- Custom styles for this template -->
     <link href="css/detail.css" rel="stylesheet">
     <link href="css/landing-page.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- airtable -->
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
-    <script>
-        const url = new URL(window.location.href);
-        const id = url.searchParams.get("id");
-        const headers = {
-            headers: {
-                "Authorization": "Bearer keyabYPbrYnSWmK9v"
-            }
-        };
-        const getProductListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Product';
-        const getOrderdetailsListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Orderdetails';
-        const getProductList = async () => {
-            const response = await fetch(getProductListAPI, headers);
-            const data = await response.json();
-            return data;
-        }
-        const getOrderdetailsList = async () => {
-            const response = await fetch(getOrderdetailsListAPI + '?view=Grid%20view', headers);
-            const data = await response.json();
-            return data;
-        }
+    <script src="node_modules/airtable/build/airtable.browser.js"></script>
 
-        $(document).ready(function() {
-            getOrderdetailsList().then(orderdetailsListData => { // *****先取得全部Order*****
-                const orderdetailsList = orderdetailsListData.records;
-                console.log('orderdetailsList:', orderdetailsList);
-                getProductList().then(productListData => { // *****再取得全部Customer*****
-                    const productList = productListData.records;
-                    console.log('productList:', productList);
-                    var date;
-                    var way;
-                    $.each(productList, (index, product) => {
-                        let productOrderdetails = [];
-                        const productId = product.id;
-                        const {
-                            Pro_id,
-                            Orderdetails
-                        } = product.fields;
-                        const pro = product.id;
-                        let i = 0;
-                        if(pro === id){
-                            i = index;
-                            //console.log(pro);
-                            way = product.fields.Pro_Pre_way;
-                            //console.log(way);
-                        }
-                        if (Orderdetails) { // *****如果此customer有Order
-                            //console.log("hh", orderdetailsList.filter(orderdetails => orderdetails.fields.Pro_id));
-                            let order = orderdetailsList.filter(orderdetails => orderdetails.fields.Pro_id);
-                            $.each(order, (index, o) => {
-                                const orId = o.fields.Pro_id[0];
-                                let j = 0;
-                                if(orId === id){
-                                    j = index;
-                                    //console.log(orId);
-                                    productOrderdetails = orderdetailsList.filter(or => orId === id);
-                                    date = productOrderdetails[j].fields.Pro_expire_day;
-                                }
-                            });
-                            //productOrderdetails = orderdetailsList.filter(orderdetails => orderdetails.fields.Pro_id === id); // *****在全部Order中找出此customer的Order*****
-                            //console.log('productOrderdetails:', date);
-                        }
-                    });
-                    $('#preserve').append(`
-                        <tr class="text">
-                            <td>保存期限</td>
-                        </tr>
-                        <tr>
-                            <td>各項食材以${way}保存${date}天</td>
-                        </tr>
-                    `);
-                });
-            });
-        });
-        $(document).ready(function() {
-            const url = new URL(window.location.href);
-            const id = url.searchParams.get("id");
-            fetch('https://api.airtable.com/v0/appZpGVmdenKv27KK/Product/' + id, {
-                    headers: {
-                        "Authorization": "Bearer keyYUsB5KpziWQeW5"
-                    }
-                })
-                .then(function(response) {
-                    return response.json();
-                })
-                .then(function(data) {
-                    console.log('data:', data);
-                    $('#img').append(
-                        `
-                    <img align="center" class="img2" src="${data.fields.Pro_image}">
-                        <br>
-                        <br>
-                    <div align="center" class="name">
-                        <h3 id="name" class="t1">${data.fields.Pro_name}  </h3>
-                        <button type="button" class="btn btn-color-detail">加入購物車</button>    
-                    </div>
-                    `);
-                    $('#procedure').append(
-                        `
-                    <tr>
-                        <td class="text">作法</td>
-                    </tr>
-                    <tr>
-                        <td class="method">${data.fields.Pro_procedure}</td>
-                    <tr>
-                    `);
-                })
-        });
-    </script>
 </head>
 
 <body>
     <!--     test-->
-
     <header id="header-1" class="header">
         <nav class="header-nav">
             <a href="index.html">
@@ -157,8 +50,6 @@
             </div>
         </nav>
     </header>
-
-
     <div class="container">
         <div class="row">
             <div class="col-md-6 p-3 md-auto" id="img">
@@ -166,21 +57,14 @@
                 <img class="img2" src="img/detail.jpg">
                 <br>
                 <br>
-
                 <h3 class="t1" id="name"></h3>
-
                 <button type="button" class="btn btn-color-detail t2">加入購物車
                 </button>
 -->
-
-
-
             </div>
-
-
             <div class="col-md-6 mr-auto text2">
                 <table class="table table-borderless" id="content">
-                    <tr>
+                    <!-- <tr>
                         <td class="text">內容物</td>
                     </tr>
                     <tr>
@@ -198,11 +82,10 @@
                     </tr>
                     <tr>
                         <td>嫩薑 適量</td>
-                    </tr>
+                    </tr> -->
                 </table>
-
                 <table class="table table-borderless" id="preserve">
-<!--
+                    <!--
                     <tr class="text">
                         <td>保存期限</td>
                     </tr>
@@ -222,7 +105,6 @@
                 </table>
 -->
                 <table class="table table-borderless" id="procedure">
-
                     <!--
 <tr>
     <td class="text">作法</td>
@@ -233,7 +115,6 @@
         <br> 6. 以花椒油爆香薑末，加乾辣椒炒至膨脹，放入蒜末、蝦仁、醬汁炒勻，起鍋前倒入花生，淋少許白醋拌勻，灑蔥花即可。</td>
 </tr>
 -->
-
                 </table>
             </div>
         </div>
@@ -285,16 +166,133 @@
         </div>
     </footer>
 
-
-
-
-
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
     <script src="js/index.js"></script>
+</body>
 
+<script>
+    var Airtable = require('airtable');
+    var base = new Airtable({
+        apiKey: 'keyabYPbrYnSWmK9v'
+    }).base('appZpGVmdenKv27KK');
+    const url = new URL(window.location.href);
+    const id = url.searchParams.get("id");
+    base('Orderdetails').select({
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+        console.log(records);
+        base('Product').find(id, function (err, record) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(record);
+            $('#img').append(
+                `
+            <img align="center" class="img2" src="${record.fields.Pro_image}">
+            <br><br>
+            <div align="center" class="name">
+            <h3 id="name" class="t1">${record.fields.Pro_name}  </h3>
+            <a href="index-shoppingcart.html?id=${id}"><button type="button" class="btn btn-color-detail">加入購物車</button></a>  
+            </div>
+            `
+            );
+            var date;
+            records.forEach(function (order, i) {
+                if (order.fields.Pro_id == id) {
+                    date = records[i].fields.Pro_expire_day;
+                }
+            });
+            //console.log(date);
+            $('#preserve').append(
+                `
+                <tr class="text">
+                <td>保存期限</td>
+                </tr>
+                <tr>
+                <td>各項食材以${record.fields.Pro_Pre_way}保存${date}天</td>
+                </tr>
+                    `
+            );
+            $('#procedure').append(
+                `
+            <tr>
+            <td class="text">作法</td>
+            </tr>
+            <tr>
+            <td class="method">${record.fields.Pro_procedure}</td>
+            <tr>
+                `
+            );
+        });
+    });
+    base('Pro_material').select({
+        view: "Grid view"
+    }).eachPage(function page(Promat, fetchNextPage) {
+        console.log(Promat);
+        base('Material').select({
+            view: "Grid view"
+        }).eachPage(function page(mat, fetchNextPage) {
+            console.log(mat);
+            base('Product').find(id, function (err, pro) {
+                console.log(pro);
+                //console.log(pro.fields.Pro_material);
+                var linkedmatID = [];
+                var amountarr = [];
+                var x = 0;
+                pro.fields.Pro_material.forEach(function (promatid, index) {
+                    //console.log(promatid);
+                    Promat.forEach(function (promat, i) {
+                        //console.log("promat",promat.id);
+                        if (promat.id === promatid) {
+                            //console.log(Promat[i].fields.Mat_id[0]);
+                            linkedmatID[i] = Promat[i].fields.Mat_id[0];
+                            amountarr[x] = Promat[i].fields.Pro_mat_amount;
+                            x++;
+                        }
 
-</body></html>
+                    });
+                });
+                console.log(amountarr);
+                var namearr = [];
+                var h = 0;
+                linkedmatID.forEach(function (matidd, m) {
+                    //console.log(matidd);
+                    mat.forEach(function (matid, a) {
+                        if (matid.id === matidd) {
+                            namearr[h] = mat[a].fields.Mat_name;
+                            h++;
+                        }
+                    });
+                });
+                console.log(namearr);
+                var sub = [];
+                namearr.forEach(function (n, index){
+                    sub[index] = n + " " + amountarr[index];
+                });
+                console.log(sub);
+                $('#content').append(
+                    `
+                    <tr><td class="text">內容物</td></tr>
+                `
+                );
+                var y = 0;
+                for(var i=0; i<h; i+=2){
+                    $('#content').append(
+                        `
+                        <tr>
+                        <td>${sub[i]}</td>
+                        <td>${sub[i+1]}</td>
+                        </tr>
+                        `
+                    );
+                }
+            });
+        });
+    });
+</script>
+
+</html>
