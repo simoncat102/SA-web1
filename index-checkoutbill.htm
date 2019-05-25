@@ -58,11 +58,14 @@
                     </tr>
                     <tr>
                         <td><label for="phonenumber">聯絡電話：</label><input type="text" id="phonenumber" class="form-control" maxlength="10"></td>
-                        <td><label for="Dday">配送日期：</label><input type="date" id="Dday" class="form-control"></td>
+                        <td><label for="way">配送方式：</label><br><select>
+                                <option value="self">自行收貨</option>
+                                <option value="other">管理員代收</option>
+                            </select></td>
                     </tr>
 
                     <tr>
-                        <td><label for="way">配送方式：</label><input type="text" id="Atime" class="form-control"></td>
+                         <td><label for="Dday">配送日期：</label><input type="date" id="Dday" class="form-control"></td>
                         <td><label for="Atime">可配送時間：</label><input type="time" id="way" class="form-control"></td>
                     </tr>
                     <tr>
@@ -94,6 +97,7 @@
                             <h4><label for="ps">訂單備註</label></h4> <textarea class="textarea" placeholder="您對於訂單的特殊要求。
 例: 特殊的送貨要求等"></textarea>
                         </td>
+                    
                         <td width="40%">
                             <buttom class="btn btn-cart">確認送出</buttom>
                         </td>

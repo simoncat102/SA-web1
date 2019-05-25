@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="css/checkout.css">
     <link rel="stylesheet" href="css/landing-page.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>食趣 - 一人的食材外送</title>
 </head>
 
 <body class="body">
@@ -33,7 +33,8 @@
                 <li><a href="#">食譜</a></li>
                 <li><a href="#">會員專區</a></li>
                 <li><a href="#">購物車</a></li>
-<li><a href="index-login.html">Sign In</a></li>            </ul>
+                <li><a href="index-login.html">Sign In</a></li>
+            </ul>
             <div class="float-right">
                 <form action="" class="search-box">
                     <input type="text" class="text search-input" placeholder="Type here to search..." />
@@ -47,17 +48,21 @@
             <div class="col-6">
                 <h4>送貨地址</h4>
                 <table class="table">
-          <tr>
+                    <tr>
                         <td><label for="last name">姓：</label><input type="text" id="last name" class="form-control"></td>
                         <td><label for="first name">名：</label><input type="text" id="first" class="form-control"></td>
                     </tr>
                     <tr>
                         <td><label for="phonenumber">聯絡電話：</label><input type="text" id="phonenumber" class="form-control" maxlength="10"></td>
-                        <td><label for="Dday">配送日期：</label><input type="date" id="Dday" class="form-control"></td>
+
+                        <td><label for="way">配送方式：</label><br><select>
+                                <option value="self">自行收貨</option>
+                                <option value="other">管理員代收</option>
+                            </select></td>
                     </tr>
-    
+
                     <tr>
-                        <td><label for="way">配送方式：</label><input type="text" id="Atime" class="form-control"></td>
+                        <td><label for="Dday">配送日期：</label><input type="date" id="Dday" class="form-control"></td>
                         <td><label for="Atime">可配送時間：</label><input type="time" id="way" class="form-control"></td>
                     </tr>
                     <tr>
@@ -72,10 +77,10 @@
                 </table>
 
             </div>
-            
+
             <div class="col-5 p-3 " align="center">
-               <h4><label for="ps" align="left">訂單備註</label></h4>
-                
+                <h4><label for="ps" align="left">訂單備註</label></h4>
+
                 <textarea class="textarea" placeholder="您對於訂單的特殊要求。
 例: 特殊的送貨要求等"></textarea>
                 <br>
@@ -87,4 +92,6 @@
         </div>
     </div>
 
-</body></html>
+</body>
+
+</html>
