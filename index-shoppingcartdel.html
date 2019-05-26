@@ -213,7 +213,7 @@
                                     <td rowspan="4"  width="240px"><img class="goods" src="${products[j].fields.Pro_image}"></td>
                                     <td class="goods-price">$${products[j].fields.Pro_price}</td>
                                     
-                                    <td align="right"><a href="index-shoppingcartdel.html?id=${shoppingcarts[i].id}"><buttom class="fas fa-trash-alt"></buttom></a></td>
+                                    <td align="right"><a href="index-shoppingcartdel.html?id=${shoppingcarts[i].id}" style="color:#6FA09E"><buttom class="fas fa-trash-alt"></buttom></a></td>
 
                                 </tr>
                                 <tr>
@@ -226,12 +226,11 @@
                                 <tr>
                                     <td>數量：</td>
                                     <td>
-                                        <select class="browser-default custom-select">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
+                                        ${`
+                                        <input type="number" id="myNumber" value=${shoppingcarts[i].fields.Shop_amount} min="1">                                      
+                                        `
+                                          
+                                        }
                                     </td>
 
                                 </tr>
