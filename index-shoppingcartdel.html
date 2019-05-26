@@ -16,131 +16,21 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
 
     <!-- Custom styles for this template -->
     <link href="css/landing-page.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/shoppingcart.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>
-        const url = new URL(window.location.href);
-        const id = url.searchParams.get("id");
-        const headers = {
-            headers: {
-                "Authorization": "Bearer keyabYPbrYnSWmK9v"
-            }
-        };
-        const getShoppingcartListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Shoppingcart';
-        const getProductListAPI = 'https://api.airtable.com/v0/appZpGVmdenKv27KK/Product';
-        const getShoppingcartList = async () => {
-            const response = await fetch(getShoppingcartListAPI + '?view=Grid%20view', headers);
-            const data = await response.json();
-            return data;
-        }
-        const getProductList = async () => {
-            const response = await fetch(getProductListAPI + '?view=Grid%20view', headers);
-            const data = await response.json();
-            return data;
-        }
-        
-        function sum(sumeach, sumall) {
-            return parseInt(sumeach) + parseInt(sumall);
-        }
-
-        $(document).ready(function() {
-            getShoppingcartList().then(shoppingcartListData => { // *****先取得全部Shop*****
-                const shoppingcartList = shoppingcartListData.records;
-                console.log('shoppingcartList:', shoppingcartList);
-                getProductList().then(ProductListData => { // *****再取得全部product*****
-                    const productList = ProductListData.records;
-                    console.log('productList:', productList);
-                    var sumeach;
-                    var sumall = 0;
-                    $.each(productList, (index, product) => {
-                        let productShoppingcart = [];
-                        const productId = product.id;
-                        const {
-                            Pro_name,
-                            Pro_price,
-                            Pro_image,
-                            Shoppingcart
-                        } = product.fields;
-                        if (Shoppingcart) { // *****如果此pro有shoppingcart
-                            productShoppingcart = shoppingcartList.filter(shoppingcart => shoppingcart.fields.name[0] === productId); // *****在全部shop中找出此pro的shop*****
-                            console.log('productShoppingcart:', productShoppingcart);
-                            sumeach = productShoppingcart.map(item => item.fields.Shop_amount * Pro_price);
-                            sumall = sum(sumall, sumeach);
-                            var amount = productShoppingcart.map(item => (item.fields.Shop_amount));
-                            var option = [1,2,3,4];
-                            var temp;
-                            $.each(option, (index, i) =>{
-                                if(option[index] == amount){
-                                    temp = option[index];
-                                    option[index] = option[0];
-                                    option[0] = temp;
-                                }
-                            });
-                            $('#contains').append(
-                                `
-                            <table class="table table-borderless table-sm goods-text " align="">
-                                <tr>
-                                    <td rowspan="4"  width="240px"><img class="goods" src="${Pro_image}"></td>
-                                    <td class="goods-price">$${Pro_price}</td>
-                                    
-                                    <td align="right"><a href="index-shoppingcart.html?id=${productId}"><buttom class="fas fa-trash-alt"></buttom></a></td>
-
-                                </tr>
-                                <tr>
-                                    <td>${Pro_name}</td>
-                                </tr>
-                                <tr>
-                                    <td>小計：</td>
-                                    <td class="browser-default">$${sumeach}</td>
-                                </tr>
-                                <tr>
-                                    <td>數量：</td>
-                                    <td>
-                                        <select class="browser-default custom-select">
-                                            <option>${option[0]}</option>
-                                            <option>${option[1]}</option>
-                                            <option>${option[2]}</option>
-                                            <option>${option[3]}</option>
-                                        </select>
-                                    </td>
-
-                                </tr>
-                            </table>
-                            `);
-                        }
-                    });
-                    $('#total').append(
-                        `
-                        <h4 class="title">總額</h4>
-                        <hr>
-                        <p class="checkout">商品總價：$${sumall}</p>
-                        <p class="checkout">運費：$100</p>
-                        <p class="checkout">總額：$${sumall+100}</p>
-                        <br>
-                        <hr>
-                        <p class="checkout">我們接受：</p>
-                        <img class="creditcard" src="https://www.patriotfamilydental.com/wp-content/uploads/2016/08/accepted-creditcards.png">
-                        <button class="btn btn-cart">
-                             <a href="index-checkout.htm" class="color-wt">結帳</a>
-                        </button>
-                    `);
-                });
-            });
-        });
-
-    </script>
+    <!-- airtable -->
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="node_modules/airtable/build/airtable.browser.js"></script>
 
 </head>
 
 <body>
-
-
 
     <!--Navigation-->
 
@@ -174,10 +64,8 @@
                 <h4 class="title">購物車</h4>
                 <hr>
                 <div class="col-md-12" id="contains">
-                   
-<!--
-                    <table class="table table-sm goods-text">
-                       
+                    <!--
+                    <table class="table table-sm goods-text">        
                         <tr>
                             <td rowspan="4" width="240px"><img class="goods" src="img/food3.jpg"></td>
                             <td class="goods-price">$168</td>
@@ -201,8 +89,6 @@
                         </tr>
                     </table>
 -->
-                    
-                    
                 </div>
                 <!--<<div class="col-md-12">-->
                 <hr>
@@ -223,13 +109,8 @@
                 </button>
 -->
             </div>
-
-
         </div>
         <!--<div class="row">-->
-
-
-
 
         <!-- Footer -->
         <footer class="footer bg-light">
@@ -275,12 +156,8 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
-
         </footer>
-
-
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -290,5 +167,98 @@
     </div>
     <!--<div class="container1">-->
 </body>
+<script>
+    var Airtable = require('airtable');
+    var base = new Airtable({
+        apiKey: 'keyabYPbrYnSWmK9v'
+    }).base('appZpGVmdenKv27KK');
+    const url = new URL(window.location.href);
+    const id = url.searchParams.get("id");
+    //console.log(id);
+    function sum(sumeach, sumall) {
+        return parseInt(sumeach) + parseInt(sumall);
+    }
 
+    base('Shoppingcart').select({
+        view: "Grid view"
+    }).eachPage(function page(shoppingcarts, fetchNextPage) {
+        console.log("shoppingcarts: ", shoppingcarts);
+        for (var i in shoppingcarts) {
+            //console.log(shoppingcarts[i]);
+            if (id === shoppingcarts[i].id) {
+                base('Shoppingcart').destroy(shoppingcarts[i].id, function (err, record) {
+                    if (err) {
+                        console.error(err);
+                        return;
+                    }
+                    console.log("delete", shoppingcarts[i].id);
+                    window.location.replace("index-shoppingcart.html")
+                });
+            }
+        }
+        base('Product').select({
+            view: "Grid view"
+        }).eachPage(function page(products, fetchNextPage) {
+            console.log("products: ", products);
+            var sumeach;
+            var sumall = 0;
+            for (var i in shoppingcarts) {
+                for (var j in products) {
+                    if (products[j].id === shoppingcarts[i].fields.name[0]) {
+                        sumall += products[j].fields.Pro_price * shoppingcarts[i].fields.Shop_amount;
+                        $('#contains').append(
+                            `
+                          <table class="table table-borderless table-sm goods-text " align="">
+                                <tr>
+                                    <td rowspan="4"  width="240px"><img class="goods" src="${products[j].fields.Pro_image}"></td>
+                                    <td class="goods-price">$${products[j].fields.Pro_price}</td>
+                                    
+                                    <td align="right"><a href="index-shoppingcartdel.html?id=${shoppingcarts[i].id}"><buttom class="fas fa-trash-alt"></buttom></a></td>
+
+                                </tr>
+                                <tr>
+                                    <td>${products[j].fields.Pro_name}</td>
+                                </tr>
+                                <tr>
+                                    <td>小計：</td>
+                                    <td class="browser-default">$${products[j].fields.Pro_price*shoppingcarts[i].fields.Shop_amount}</td>
+                                </tr>
+                                <tr>
+                                    <td>數量：</td>
+                                    <td>
+                                        <select class="browser-default custom-select">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                        </select>
+                                    </td>
+
+                                </tr>
+                            </table>
+                          `
+                        );
+                    }
+                }
+            }
+            console.log(sumall);
+            $("#total").append(
+                `
+                <h4 class="title">總額</h4>
+                <hr>
+                <p class="checkout">商品總價：$${sumall}</p>
+                <p class="checkout">運費：$100</p>
+                <p class="checkout">共計：$${sumall+100}</p>
+                <br>
+                <hr>
+                <p class="checkout">我們接受：</p>
+                <img class="creditcard" src="https://www.patriotfamilydental.com/wp-content/uploads/2016/08/accepted-creditcards.png">
+                <button type="submit" class="btn btn-cart">
+                <a href="#" class="color-wt">結帳</a>
+                </button>
+                `
+            );
+        });
+    });
+</script>
 </html>
