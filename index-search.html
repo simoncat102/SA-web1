@@ -131,12 +131,13 @@
                                             <option value="lowToHigh">由低至高</option>
                                         </select>
                                     </td>
-                                    <td>難易度: </td>
-                                    <td width="20%">
+                                    <td>製作時間 </td>
+                                    <td width="25%">
                                         <select class="browser-default custom-select">
-                                            <option selected value="default">預設</option>
-                                            <option value="highToLow">由高至低</option>
-                                            <option value="lowToHigh">由低至高</option>
+                                            <option selected value="default">10min ~ 20min</option>
+                                            <option value="highToLow">20min ~ 30min</option>
+                                            <option value="lowToHigh">30min ~ 40min</option>
+                                            <option value="lowToHigh">40min ~ 50min</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -214,6 +215,12 @@
 
 </body>
 <script>
+    const url = window.location.search;
+    if (url.indexOf("?") != -1){
+        keyword = url.subsrt(url.indexOf("=") + 1);
+        keyword = decodeURI(decodeURI(result));
+        console.log(keyword);
+    }
     var Airtable = require('airtable');
     var base = new Airtable({
         apiKey: 'keyabYPbrYnSWmK9v'
