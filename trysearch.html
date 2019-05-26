@@ -131,12 +131,13 @@
                                             <option value="lowToHigh">由低至高</option>
                                         </select>
                                     </td>
-                                    <td>難易度: </td>
-                                    <td width="20%">
+                                    <td>製作時間 </td>
+                                    <td width="25%">
                                         <select class="browser-default custom-select">
-                                            <option selected value="default">預設</option>
-                                            <option value="highToLow">由高至低</option>
-                                            <option value="lowToHigh">由低至高</option>
+                                            <option selected value="default">10min ~ 20min</option>
+                                            <option value="highToLow">20min ~ 30min</option>
+                                            <option value="lowToHigh">30min ~ 40min</option>
+                                            <option value="lowToHigh">40min ~ 50min</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -232,24 +233,30 @@
         view: "Grid view"
     }).eachPage(function page(records, fetchNextPage) {
         console.log(records);
+
         base('Material').select({
             //maxRecords: 100,
             view: "Grid view"
         }).eachPage(function page(ma, fetchNextPage) {
             console.log(ma);
+
             base('Product').select({
                 //maxRecords: 100,
                 view: "Grid view"
             }).eachPage(function page(re, fetchNextPage) {
                 re.forEach(function (record, j) {
-                    console.log(record);
+                    
                     for (var n in record.fields.Pro_name) {
+                        console.log(record.fields.Pro_name);
+                        console.log(record.fields.Pro_name.includes(result));
                         for (var i in result) {
-                            if (result[i] === record.fields.Pro_name[n]) {
-                                right = 1;
+                            if(record.fields.Pro_name.includes(result)){
+                            //if (result[i] === record.fields.Pro_name[n]) {
+                                
                                 var productId = record.id;
                                 var Pro_materialId = record.get("Pro_material");
                                 //console.log(Pro_materialId);
+
                                 let linkedmatID = [];
                                 Pro_materialId.forEach(function (promat, index) {
                                     console.log(Pro_materialId[index]);
@@ -295,7 +302,7 @@
                                 //console.log('Retrieved', record.get('Pro_material'));
                                 return;
                             }
-                            console.log("i",i);
+                            //console.log("i",i);
                         }
                     }
                 });
