@@ -27,6 +27,16 @@
     <!-- airtable -->
     <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
     <script src="node_modules/airtable/build/airtable.browser.js"></script>
+    
+    <style> 
+input[type=button], input[type=submit], input[type=reset] {
+  height: 25px;
+  width: 25px;
+  background-color: #6fa09e;
+  border-radius: 50%;
+  display: inline-block;
+}
+</style>
 
 </head>
 
@@ -300,10 +310,10 @@
                                 <tr>
                                     <td>數量:</td>
                                     <td>                                       
-                                        <input value="-" type="button" onclick="Sub(this)">
+                                        <input value="&#xf107" type="button" onclick="Sub(this)" class="fa fa-input" style="color:#fff">
                                         ${shoppingcarts[i].fields.Shop_amount}
                                         <input type="hidden" value=${shoppingcarts[i].fields.Shop_amount} name=${shoppingcarts[i].id} size="1">
-                                        <input value="+" type="button" onclick="Add(this)">
+                                        <input value="&#xf106" type="button" onclick="Add(this)" class="fa fa-input" style="color:#fff">
                                     </td>
                                 </tr>
                             </table>
