@@ -304,12 +304,12 @@ input[type=button], input[type=submit], input[type=reset] {
                                     <td>${products[j].fields.Pro_name}</td>
                                 </tr>
                                 <tr>
-                                    <td>小計：</td>
-                                    <td class="browser-default">$${products[j].fields.Pro_price*shoppingcarts[i].fields.Shop_amount}</td>
+            
+                                    <td class="browser-default">小計：$${products[j].fields.Pro_price*shoppingcarts[i].fields.Shop_amount}</td>
                                 </tr>
                                 <tr>
-                                    <td>數量:</td>
-                                    <td>                                       
+                                    <td>數量：
+
                                         <input value="&#xf107" type="button" onclick="Sub(this)" class="fa fa-input" style="color:#fff">
                                         ${shoppingcarts[i].fields.Shop_amount}
                                         <input type="hidden" value=${shoppingcarts[i].fields.Shop_amount} name=${shoppingcarts[i].id} size="1">
