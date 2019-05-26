@@ -13,7 +13,8 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
     <link rel="stylesheet" href="css/checkout.css">
     <link rel="stylesheet" href="css/landing-page.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -42,55 +43,82 @@
             </div>
         </nav>
     </header>
+    <form>
+        <div class="containers">
+            <div class="row">
+                <div class="col-6">
+                    <h4>送貨地址</h4>
+                    <table class="table">
+                        <tr>
+                            <td><label for="last name">姓：</label><input type="text" name="n1" id="checkout" class="form-control" value="柯">
+                            </td>
+                            <td><label for="first name">名：</label><input type="text" name="n1" id="checkout" class="form-control" value="文哲">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="phonenumber">聯絡電話：</label><input type="text" name="n1" id="checkout"
+                                    class="form-control" maxlength="10" value="0930090351"></td>
 
-    <div class="containers">
-        <div class="row">
-            <div class="col-6">
-                <h4>送貨地址</h4>
-                <table class="table">
-                    <tr>
-                        <td><label for="last name">姓：</label><input type="text" id="last name" class="form-control"></td>
-                        <td><label for="first name">名：</label><input type="text" id="first" class="form-control"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="phonenumber">聯絡電話：</label><input type="text" id="phonenumber" class="form-control" maxlength="10"></td>
+                            <td><label for="way">配送方式：</label><br><select id="checkout" name="n1">
+                                    <option value="自行收貨" selected>自行收貨</option>
+                                    <option value="管理員代收">管理員代收</option>
+                                </select></td>
+                        </tr>
 
-                        <td><label for="way">配送方式：</label><br><select>
-                                <option value="self">自行收貨</option>
-                                <option value="other">管理員代收</option>
-                            </select></td>
-                    </tr>
+                        <tr>
+                            <td><label for="Dday">配送日期：</label><input type="date" name="n1" id="checkout" class="form-control">
+                            </td>
+                            <td><label for="Atime">可配送時間：</label><input type="time" name="n1" id="checkout" class="form-control">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><label for="direction">居住地址：</label><input type="text"  name="n1" id="checkout"
+                                    class="form-control" placeholder="鄉、鎮、市、街道名稱、門牌號碼、樓層"
+                                    value ="中正路510號"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><a href="index-checkoutbill.htm"><button type="submit"
+                                        class="btn btn-cart">是否將帳單寄至不同地址</button></a></td>
+                            <td></td>
+                        </tr>
 
-                    <tr>
-                        <td><label for="Dday">配送日期：</label><input type="date" id="Dday" class="form-control"></td>
-                        <td><label for="Atime">可配送時間：</label><input type="time" id="way" class="form-control"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><label for="direction">居住地址：</label><input type="text" id="direction" class="form-control" placeholder="鄉、鎮、市、街道名稱、門牌號碼、樓層"></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><a href="index-checkoutbill.htm"><button type="submit" class="btn btn-cart">是否將帳單寄至不同地址</button></a></td>
-                        <td></td>
-                    </tr>
+                    </table>
 
-                </table>
+                </div>
+
+                <div class="col-5 p-3 " align="center">
+                    <h4><label for="ps" align="left">訂單備註</label></h4>
+
+                    <textarea class="textarea" placeholder="您對於訂單的特殊要求。例: 特殊的送貨要求等" id="checkout"
+                    name="n1" value="不要香菜和蔥">
+
+                    </textarea>
+                    <br>
+                    <input type="checkbox">寄給我最新優惠與消息
+                    <br>
+                    <input type="button" class="btn btn-cart" onclick="print()" value="確認送出"></input>
+                </div>
 
             </div>
-
-            <div class="col-5 p-3 " align="center">
-                <h4><label for="ps" align="left">訂單備註</label></h4>
-
-                <textarea class="textarea" placeholder="您對於訂單的特殊要求。
-例: 特殊的送貨要求等"></textarea>
-                <br>
-                <input type="checkbox">寄給我最新優惠與消息
-                <br>
-                <buttom class="btn btn-cart">確認送出</buttom>
-            </div>
-
         </div>
-    </div>
+    </form>
+    <script>
+        function print() {
+            var detail = document.getElementsByName("n1");
+            console.log(detail[0].value);
+            console.log(detail[1].value);
+            console.log(detail[2].value);
+            console.log(detail[3].value);
+            console.log(detail[4].value);
+            console.log(detail[5].value);
+            console.log(detail[6].value);
+            console.log(detail[7].value);
+
+
+
+        };
+    </script>
 
 </body>
 
