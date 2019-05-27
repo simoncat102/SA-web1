@@ -230,7 +230,7 @@
         }).eachPage(function page(ma, fetchNextPage) {
             console.log(ma);
             base('Product').select({
-                //maxRecords: 100,
+                //maxRecords: 100, 
                 view: "Grid view"
             }).eachPage(function page(re, fetchNextPage) {
                 re.forEach(function (record, j) {
