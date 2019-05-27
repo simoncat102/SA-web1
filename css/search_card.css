@@ -36,3 +36,9 @@ a.card-info{
 a.card-info:hover{
     color: darkslategray;
 }
+
+i.star{
+    color:#ffd11a;
+    float:right;
+    
+}
