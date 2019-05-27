@@ -16,7 +16,8 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
 
     <!-- Custom styles for this template -->
     <link href="css/landing-page.min.css" rel="stylesheet">
@@ -239,14 +240,14 @@
                 //maxRecords: 100,
                 view: "Grid view"
             }).eachPage(function page(re, fetchNextPage) {
-                re.forEach(function(record, j) {
+                re.forEach(function (record, j) {
                     var productId = record.id;
                     var Pro_materialId = record.get("Pro_material");
                     //console.log(Pro_materialId);
                     let linkedmatID = [];
-                    Pro_materialId.forEach(function(promat, index) {
+                    Pro_materialId.forEach(function (promat, index) {
                         console.log(Pro_materialId[index]);
-                        records.forEach(function(promat, i) {
+                        records.forEach(function (promat, i) {
                             if (records[i].id === Pro_materialId[
                                     index]) {
                                 linkedmatID[i] = records[i].fields
@@ -257,9 +258,9 @@
                     var namearr = [];
                     let h = 0;
                     //console.log(linkedmatID);
-                    linkedmatID.forEach(function(materials, z) {
+                    linkedmatID.forEach(function (materials, z) {
                         console.log(linkedmatID[z]);
-                        ma.forEach(function(material, m) {
+                        ma.forEach(function (material, m) {
                             if (ma[m].id === linkedmatID[z][0]) {
                                 //console.log(j);
                                 namearr[h] = ma[m].fields.Mat_name;
@@ -271,6 +272,17 @@
                     if (namearr.length >= 3) {
                         namearr = namearr.slice(0, 3);
                     };
+                    console.log(record.get('Pro_score'));
+                    var star = [];
+                    var str = "";
+                    var i;
+                    for (i = 0; i < record.get('Pro_score'); i++) {
+                        star.push(
+                            `<i class="fas fa-star" style="color:#ffd11a; float:right"></i>`
+                            );
+                    }
+                    
+
                     $('#product').append(
                         `
                         <div class="card">
@@ -280,11 +292,8 @@
                         <p>${namearr}</p>
                         <p><b>$${record.get('Pro_price')}
                 </a>
-        <i class="fas fa-star" style="color:#ffd11a; float:right"></i>
-        <i class="fas fa-star" style="color:#ffd11a; float:right"></i>
-        <i class="fas fa-star" style="color:#ffd11a; float:right"></i>
-        <i class="fas fa-star" style="color:#ffd11a; float:right"></i>
-        <i class="fas fa-star" style="color:#ffd11a; float:right"></i>
+                 ${star.join('')}
+                 
         
                     </b>
                     </p>
@@ -303,7 +312,6 @@
             });
         });
     });
-
 </script>
 
 </html>
