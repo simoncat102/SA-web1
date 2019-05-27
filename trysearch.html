@@ -245,14 +245,14 @@
                 view: "Grid view"
             }).eachPage(function page(re, fetchNextPage) {
                 re.forEach(function (record, j) {
-                    
+
                     for (var n in record.fields.Pro_name) {
                         console.log(record.fields.Pro_name);
                         console.log(record.fields.Pro_name.includes(result));
                         for (var i in result) {
-                            if(record.fields.Pro_name.includes(result)){
-                            //if (result[i] === record.fields.Pro_name[n]) {
-                                
+                            if (record.fields.Pro_name.includes(result)) {
+                                //if (result[i] === record.fields.Pro_name[n]) {
+
                                 var productId = record.id;
                                 var Pro_materialId = record.get("Pro_material");
                                 //console.log(Pro_materialId);
@@ -286,7 +286,20 @@
                                         }
                                     });
                                 });
+                                //只出現3個食材
                                 console.log(namearr);
+                                if (namearr.length >= 3) {
+                                    namearr = namearr.slice(0, 3);
+                                };
+                                //星星你有毒
+                                console.log(record.get('Pro_score'));
+                                var star = [];
+                                var i;
+                                for (i = 0; i < record.get('Pro_score'); i++) {
+                                    star.push(
+                                        `<i class="fas fa-star" style="color:#ffd11a; float:right"></i>`
+                                    );
+                                }
                                 $('#product').append(
                                     `
                                     <div class="card">
@@ -294,9 +307,13 @@
                                     <img src="${record.get('Pro_image')}" alt="Avatar" style="width:100%">                        <div class="container">
                                     <h4 class="text-style"><b>${record.get('Pro_name')}</b></h4>
                                     <p>${namearr}</p>
-                                    <p><b>$${record.get('Pro_price')}</b></p>
-                                    </div>
+                                    <p><b>$${record.get('Pro_price')}
                                     </a>
+                                    ${star.join('')}
+                                    </b>
+                                    </p>
+                                    </div>
+                        
                                     </div>
                                 `);
                                 //console.log('Retrieved', record.get('Pro_material'));
