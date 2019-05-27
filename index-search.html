@@ -268,13 +268,14 @@
                             }
                         });
                     });
+                    //只出現3個食材
                     console.log(namearr);
                     if (namearr.length >= 3) {
                         namearr = namearr.slice(0, 3);
                     };
+                    //星星你有毒
                     console.log(record.get('Pro_score'));
                     var star = [];
-                    var str = "";
                     var i;
                     for (i = 0; i < record.get('Pro_score'); i++) {
                         star.push(
@@ -293,8 +294,6 @@
                         <p><b>$${record.get('Pro_price')}
                 </a>
                  ${star.join('')}
-                 
-        
                     </b>
                     </p>
                         </div>
