@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>食趣 - 一人的食材外送</title>
@@ -10,7 +11,8 @@
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+    type="text/css">
 
 <!-- Custom styles for this template -->
 <link href="css/landing-page.min.css" rel="stylesheet">
@@ -48,26 +50,28 @@
                 <div class="head">
                     收貨人資料
                 </div>
+                <div id="detail">
+                    <!-- <table class="table info">
+                        <tbody>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>地址：新北市新莊區後港一路127號</td>
+                            </tr>
+                            <tr>
+                                <td>聯絡電話：0963985025</td>
+                            </tr>
+                            <tr>
+                                <td>配送時間：10:00 ~ 11:00</td>
+                            </tr>
+                            <tr>
+                                <td>配送日期：08/22</td>
+                            </tr>
 
-                <table class="table info">
-                    <tr>
-                        <td>姓名：黃柏誠</td>
-                    </tr>
-                    <tr>
-                        <td>地址：新北市新莊區後港一路127號</td>
-                    </tr>
-                    <tr>
-                        <td>聯絡電話：0963985025</td>
-                    </tr>
-                    <tr>
-                        <td>配送時間：10:00 ~ 11:00</td>
-                    </tr>
-                    <tr>
-                        <td>配送日期：08/22</td>
-                    </tr>
-
-
-                </table>
+                        </tbody>
+                    </table> -->
+                </div>
 
             </div>
             <div class="bgcolor">
@@ -75,55 +79,31 @@
                     明細顯示
                 </div>
                 <br>
-                <table class="table table-sm goods-text table-borderless">
-                    <tr>
-                        <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
-                        <td class="goods-price">$168</td>
-                    </tr>
-                    <tr align="left">
-                        <td>黃金炸豬排</td>
-                    </tr>
+                <div id="detail2">
+                    <!-- <table class="table table-sm goods-text table-borderless">
+                        <tr>
+                            <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
+                            <td class="goods-price">$168</td>
+                        </tr>
+                        <tr align="left">
+                            <td>黃金炸豬排</td>
+                        </tr>
 
-                    <tr>
-                        <td>數量：1</td>
+                        <tr>
+                            <td>數量：1</td>
 
-                    </tr>
-                </table>
-                <hr>
-                <table class="table table-sm goods-text table-borderless">
-                    <tr>
-                        <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
-                        <td class="goods-price">$168</td>
-                    </tr>
-                    <tr align="left">
-                        <td>黃金炸豬排</td>
-                    </tr>
+                        </tr>
+                    </table>
+                    <hr> -->
 
-                    <tr>
-                        <td>數量：1</td>
 
-                    </tr>
-                </table>
-                <hr>
-                <table class="table table-sm goods-text table-borderless">
-                    <tr>
-                        <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
-                        <td class="goods-price">$168</td>
-                    </tr>
-                    <tr align="left">
-                        <td>黃金炸豬排</td>
-                    </tr>
+                </div>
+                <div id="detali3">
+                    <!-- <p class="total">運費：100 &nbsp; 小計：180</p>
+                    <p class="total">總價：280</p>
+                    <br><br><br> -->
+                </div>
 
-                    <tr>
-                        <td>數量：1</td>
-
-                    </tr>
-                </table>
-                <hr>
-                <p class="total">運費：100 &nbsp; 小計：180</p>
-                <p class="total">總價：280</p>
-                <br><br><br>
-                
 
 
 
@@ -132,8 +112,8 @@
                 <div class="head">
                     輸入信用卡資料
                 </div>
-                
-                <button class="btn btn-card" type="submit">確認</button>
+
+                <button class="btn btn-card" type="submit" onclick="main()">確認</button>
             </div>
 
 
@@ -188,4 +168,169 @@
         </div>
     </footer>
 
-</body></html>
+</body>
+<script>
+    const url = window.location.search;
+    if (url.indexOf("?") != -1) {
+        result = url.substr(url.indexOf("=") + 1);
+        result = decodeURI(decodeURI(result));
+        var detail = result.split("&");
+        console.log(detail);
+        //抓收貨人資料
+        $('#detail').append(`
+            <table class="table info">
+                        <tr>
+                            <td>姓名：${detail[0]}</td>
+                        </tr>
+                        <tr>
+                            <td>地址：${detail[5]}</td>
+                        </tr>
+                        <tr>
+                            <td>聯絡電話：${detail[1]}</td>
+                        </tr>
+                        <tr>
+                            <td>配送時間：${detail[4]}</td>
+                        </tr>
+                        <tr>
+                            <td>配送日期：${detail[3]}</td>
+                        </tr>
+                        <tr>
+                            <td>配送方式：${detail[2]}</td>
+                        </tr>
+                        <tr>
+                            <td>注意事項：${detail[6]}</td>
+                        </tr>
+
+            </table>
+
+        `);
+        //抓明細顯示
+        var Airtable = require('airtable');
+        var base = new Airtable({
+            apiKey: 'keyabYPbrYnSWmK9v'
+        }).base('appZpGVmdenKv27KK');
+
+        base('Shoppingcart').select({
+            view: "Grid view"
+        }).eachPage(function page(shoppingcarts, fetchNextPage) {
+            base('Product').select({
+                view: "Grid view"
+            }).eachPage(function page(products, fetchNextPage) {
+                //console.log("products: ", products);
+                var sumeach;
+                var sumall = 0;
+                for (var i in shoppingcarts) {
+                    for (var j in products) {
+                        if (products[j].id === shoppingcarts[i].fields.name[0]) {
+                            sumall += products[j].fields.Pro_price * shoppingcarts[i].fields
+                                .Shop_amount;
+                            $('#detail2').append(`
+                                <table class="table table-sm goods-text table-borderless">
+                                <tr>
+                                    <td rowspan="4"><img class="goods" src="${products[j].fields.Pro_image}"></td>
+                                    <td class="goods-price">$${products[j].fields.Pro_price}</td>
+                                </tr>
+                                <tr align="left">
+                                    <td>${products[j].fields.Pro_name}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>數量：${shoppingcarts[i].fields.Shop_amount}</td>
+                                </tr>
+
+                                </tr>
+                                <tr>
+                                <td>小計：$${products[j].fields.Pro_price*shoppingcarts[i].fields.Shop_amount}</td>
+                                </tr>
+                                </table>
+                                <hr>
+                            `);
+                        }
+                    }
+                }
+
+                console.log(sumall);
+                $("#detail2").append(
+                    `
+                    <p class="total">運費：100</p>
+                    <p class="total">商品總價：$${sumall}</p>
+                    <p class="total">總價：$${sumall+100}</p>
+                    <br><br><br>
+                    `
+                );
+
+
+            });
+        });
+    };
+
+    function main() {
+        //增加OD
+        add1();
+        //增加Order
+        add2();
+        //清空資料庫啦啦啦啦啦啦啦啦啦啦
+        //clear();    
+    };
+
+    function add1() {
+        base('Order').create({
+            "Order_time": "2019-05-01T05:10:00.000Z",
+            "Required_time": "2019-05-02T09:00:00.000Z",
+            "Shipped_time": "2019-05-02T08:40:00.000Z",
+            "Order_status": "已送達",
+            "Cus_id": [
+                "recvrKUAzB9flHgNN"
+            ],
+            "Price_total": 200,
+            "Orderdetails": [
+                "recS43RCaFo0uJapR",
+                "reck3IU8KEfnBNxJ6"
+            ]
+        }, function (err, record) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(record.getId());
+        });
+
+    }
+
+    function add2() {
+
+    }
+
+    function clear() {
+        base('Shoppingcart').select({
+            //maxRecords: 1,
+            view: "Grid view"
+        }).eachPage(function page(records, fetchNextPage) {
+            records.forEach(function (record) {
+                //var id = record.get('Shop_id');
+                console.log(record.id);
+                clear2(record.id);
+            });
+            fetchNextPage();
+        }, function done(err) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+
+        });
+
+    }
+
+    function clear2(id) {
+        base('Shoppingcart').destroy(id, function (err, deletedRecords) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log('Deleted record', deletedRecord.id);
+        });
+    }
+</script>
+
+</html>
