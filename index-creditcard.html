@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>食趣 - 一人的食材外送</title>
+</head>
+<!-- Bootstrap core CSS -->
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom fonts for this template -->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+<!-- Custom styles for this template -->
+<link href="css/landing-page.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/creditcard.css">
+
+<!-- airtable -->
+<script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+<script src="node_modules/airtable/build/airtable.browser.js"></script>
+
+
+<body>
+    <!--Navigation-->
+    <header id="header-1" class="header">
+        <nav class="header-nav">
+            <a href="index.html">
+                <img class="logo" src="img/logo.png">
+            </a>
+
+            <ul class="menu">
+                <li><a href="index-search.html">食譜</a></li>
+                <li><a href="#">會員專區</a></li>
+
+                <li><a href="index-shoppingcart.html">購物車</a></li>
+                <li><a href="index-login.html">Sign In</a></li>
+            </ul>
+            <div class="float-right">
+            </div>
+        </nav>
+    </header>
+
+    <div class="container3">
+        <div class="row">
+            <div class="bgcolor">
+                <div class="head">
+                    收貨人資料
+                </div>
+
+                <table class="table info">
+                    <tr>
+                        <td>姓名：黃柏誠</td>
+                    </tr>
+                    <tr>
+                        <td>地址：新北市新莊區後港一路127號</td>
+                    </tr>
+                    <tr>
+                        <td>聯絡電話：0963985025</td>
+                    </tr>
+                    <tr>
+                        <td>配送時間：10:00 ~ 11:00</td>
+                    </tr>
+                    <tr>
+                        <td>配送日期：08/22</td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+            <div class="bgcolor">
+                <div class="head">
+                    明細顯示
+                </div>
+                <br>
+                <table class="table table-sm goods-text table-borderless">
+                    <tr>
+                        <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
+                        <td class="goods-price">$168</td>
+                    </tr>
+                    <tr align="left">
+                        <td>黃金炸豬排</td>
+                    </tr>
+
+                    <tr>
+                        <td>數量：1</td>
+
+                    </tr>
+                </table>
+                <hr>
+                <table class="table table-sm goods-text table-borderless">
+                    <tr>
+                        <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
+                        <td class="goods-price">$168</td>
+                    </tr>
+                    <tr align="left">
+                        <td>黃金炸豬排</td>
+                    </tr>
+
+                    <tr>
+                        <td>數量：1</td>
+
+                    </tr>
+                </table>
+                <hr>
+                <table class="table table-sm goods-text table-borderless">
+                    <tr>
+                        <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
+                        <td class="goods-price">$168</td>
+                    </tr>
+                    <tr align="left">
+                        <td>黃金炸豬排</td>
+                    </tr>
+
+                    <tr>
+                        <td>數量：1</td>
+
+                    </tr>
+                </table>
+                <hr>
+                <p class="total">運費：100 &nbsp; 小計：180</p>
+                <p class="total">總價：280</p>
+                <br><br><br>
+                
+
+
+
+            </div>
+            <div class="bgcolor">
+                <div class="head">
+                    輸入信用卡資料
+                </div>
+                
+                <button class="btn btn-card" type="submit">確認</button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                    <ul class="list-inline mb-2">
+                        <li class="list-inline-item">
+                            <a class="info-text" href="#">About</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a class="info-text" href="#">Contact</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a class="info-text" href="#">Terms of Use</a>
+                        </li>
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="#" class="info-text">Privacy Policy</a>
+                        </li>
+                    </ul>
+                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+                </div>
+                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a class="info-text" href="#">
+                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item mr-3">
+                            <a class="info-text" href="#">
+                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="info-text" href="#">
+                                <i class="fab fa-instagram fa-2x fa-fw"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body></html>
