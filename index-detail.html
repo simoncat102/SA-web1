@@ -200,12 +200,12 @@
             </div>
             `
             );
-            var date;
-            records.forEach(function (order, i) {
-                if (order.fields.Pro_id == id) {
-                    date = records[i].fields.Pro_expire_day;
-                }
-            });
+            // var date;
+            // records.forEach(function (order, i) {
+            //     if (order.fields.Pro_id == id) {
+            //         date = records[i].fields.Pro_expire_day;
+            //     }
+            // });
             //console.log(date);
             $('#preserve').append(
                 `
@@ -219,7 +219,7 @@
                 <td>保存期限</td>
                 </tr>
                 <tr>
-                <td>各項食材以${record.fields.Pro_Pre_way}保存${date}天</td>
+                <td>各項食材以${record.fields.Pro_Pre_way}保存${record.fields.Pro_expire_day}天</td>
                 </tr>
                     `
             );

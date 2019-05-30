@@ -106,17 +106,23 @@
     <script>
         function print() {
             var detail = document.getElementsByName("n1");
-            console.log(detail[0].value);
-            console.log(detail[1].value);
-            console.log(detail[2].value);
-            console.log(detail[3].value);
-            console.log(detail[4].value);
-            console.log(detail[5].value);
-            console.log(detail[6].value);
-            console.log(detail[7].value);
-
-
-
+            var d0 = detail[0].value;
+            var d1 = detail[1].value;
+            var d2 = detail[2].value;
+            var d3 = detail[3].value;
+            var d4 = detail[4].value;
+            var d5 = detail[5].value;
+            var d6 = detail[6].value;
+            var d7 = detail[7].value;
+            
+            window.location.href = "index-creditcard.html?value=" + encodeURI(encodeURI(d0)) 
+            +encodeURI(encodeURI(d1))
+            +"&" +encodeURI(encodeURI(d2)) 
+            +"&" +encodeURI(encodeURI(d3)) 
+            +"&" +encodeURI(encodeURI(d4)) 
+            +"&" +encodeURI(encodeURI(d5)) 
+            +"&" +encodeURI(encodeURI(d6)) 
+            +"&" +encodeURI(encodeURI(d7)) ;
         };
     </script>
 
