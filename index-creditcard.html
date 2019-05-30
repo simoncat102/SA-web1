@@ -21,6 +21,12 @@
 <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
 <script src="node_modules/airtable/build/airtable.browser.js"></script>
 
+<!--captcha-->
+<script src="https://www.google.com/reCAPTCHA/api.js" async defer></script>
+
+
+<!--card validation-->
+<link rel="stylesheet" href="css/style-card.css">
 
 <body>
     <!--Navigation-->
@@ -123,7 +129,7 @@
                 <p class="total">運費：100 &nbsp; 小計：180</p>
                 <p class="total">總價：280</p>
                 <br><br><br>
-                
+
 
 
 
@@ -132,8 +138,26 @@
                 <div class="head">
                     輸入信用卡資料
                 </div>
-                
-                <button class="btn btn-card" type="submit">確認</button>
+                <form>
+    <div class="form-container">
+           
+          <input id="column-left" type="text" name="first-name" placeholder="First Name"/>
+          <input id="column-right" type="text" name="last-name" placeholder="Surname"/>
+          <input id="input-field" type="text" name="number" placeholder="Card Number"/>
+          <input id="column-left" type="text" name="expiry" placeholder="MM / YY"/>
+          <input id="column-right" type="text" name="cvc" placeholder="CCV"/>
+         
+          <div class="card-wrapper"></div>
+      
+          <input id="input-field" type="text" name="streetaddress" required="required" autocomplete="on" maxlength="45" placeholder="Streed Address"/>
+          <input id="column-left" type="text" name="city" required="required" autocomplete="on" maxlength="20" placeholder="City"/>
+          <input id="column-right" type="text" name="zipcode" required="required" autocomplete="on" pattern="[0-9]*" maxlength="5" placeholder="ZIP code"/>
+          <input id="input-field" type="email" name="email" required="required" autocomplete="on" maxlength="40" placeholder="Email"/>
+          <br>
+          <input class="btn btn-card" id="input-button" type="submit" value="確認送出"/>
+      </div>
+        
+    </form>
             </div>
 
 
@@ -188,4 +212,5 @@
         </div>
     </footer>
 
-</body></html>
+</body>
+<script src="js/index-card.js"></script></html>

@@ -1,5 +1,9 @@
-.bgcolor {
+body{
     background-color: lightgray;
+}
+
+.bgcolor {
+    background-color: white;
     height: inherit;
     margin: 10px;
     width: 30%;
@@ -24,6 +28,7 @@
     line-height: 70px;
     font-weight: 700;
     font-size: 22px;
+    color:whitesmoke;
 
 /*
     background-color: #C7FF91;
@@ -65,5 +70,4 @@ img.goods{
 .btn-card{
     background-color: #6fa09e;
     width: 30%;
-    margin: 10%;
 }
