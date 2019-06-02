@@ -13,8 +13,7 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
-        type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="css/checkout.css">
     <link rel="stylesheet" href="css/landing-page.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -56,8 +55,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="phonenumber">聯絡電話：</label><input type="text" name="n1" id="checkout"
-                                    class="form-control" maxlength="10" value="0930090351"></td>
+                            <td><label for="phonenumber">聯絡電話：</label><input type="text" name="n1" id="checkout" class="form-control" maxlength="10" value="0930090351"></td>
 
                             <td><label for="way">配送方式：</label><br><select id="checkout" name="n1">
                                     <option value="自行收貨" selected>自行收貨</option>
@@ -72,15 +70,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2"><label for="direction">居住地址：</label><input type="text"  name="n1" id="checkout"
-                                    class="form-control" placeholder="鄉、鎮、市、街道名稱、門牌號碼、樓層"
-                                    value ="中正路510號"></td>
+                            <td colspan="2"><label for="direction">居住地址：</label><input type="text" name="n1" id="checkout" class="form-control" placeholder="鄉、鎮、市、街道名稱、門牌號碼、樓層" value="中正路510號"></td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="2"><a href="index-checkoutbill.htm"><button type="submit"
-                                        class="btn btn-cart">是否將帳單寄至不同地址</button></a></td>
-                            <td></td>
+                            <td colspan="2">
+                            <button type="submit" class="btn btn-cart"><a href="index-checkoutbill.htm" class="font">是否將帳單寄至不同地址</a></button>
+                            </td>
+                            
                         </tr>
 
                     </table>
@@ -90,14 +87,13 @@
                 <div class="col-5 p-3 " align="center">
                     <h4><label for="ps" align="left">訂單備註</label></h4>
 
-                    <textarea class="textarea" placeholder="您對於訂單的特殊要求。例: 特殊的送貨要求等" id="checkout"
-                    name="n1" value="不要香菜和蔥">
+                    <textarea class="textarea" placeholder="您對於訂單的特殊要求。例: 特殊的送貨要求等" id="checkout" name="n1" value="不要香菜和蔥">
 
                     </textarea>
                     <br>
                     <input type="checkbox">寄給我最新優惠與消息
                     <br>
-                    <input type="button" class="btn btn-cart" onclick="print()" value="確認送出"></input>
+                    <input type="button" class="btn btn-cart" onclick="print()" value="確認送出">
                 </div>
 
             </div>
@@ -114,16 +110,17 @@
             var d5 = detail[5].value;
             var d6 = detail[6].value;
             var d7 = detail[7].value;
-            
-            window.location.href = "index-creditcard.html?value=" + encodeURI(encodeURI(d0)) 
-            +encodeURI(encodeURI(d1))
-            +"&" +encodeURI(encodeURI(d2)) 
-            +"&" +encodeURI(encodeURI(d3)) 
-            +"&" +encodeURI(encodeURI(d4)) 
-            +"&" +encodeURI(encodeURI(d5)) 
-            +"&" +encodeURI(encodeURI(d6)) 
-            +"&" +encodeURI(encodeURI(d7)) ;
+
+            window.location.href = "index-creditcard.html?value=" + encodeURI(encodeURI(d0)) +
+                encodeURI(encodeURI(d1)) +
+                "&" + encodeURI(encodeURI(d2)) +
+                "&" + encodeURI(encodeURI(d3)) +
+                "&" + encodeURI(encodeURI(d4)) +
+                "&" + encodeURI(encodeURI(d5)) +
+                "&" + encodeURI(encodeURI(d6)) +
+                "&" + encodeURI(encodeURI(d7));
         };
+
     </script>
 
 </body>
