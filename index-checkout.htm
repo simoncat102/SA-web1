@@ -114,11 +114,11 @@
                             </td>
                             <td></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <td colspan="2"><a href="index-checkoutbill.htm"><button type="submit"
                                         class="btn btn-cart">是否將帳單寄至不同地址</button></a></td>
                             <td></td>
-                        </tr>
+                        </tr> -->
 
                     </table>
 
@@ -126,11 +126,7 @@
 
                 <div class="col-5 p-3 " align="center">
                     <h4><label for="ps" align="left">訂單備註</label></h4>
-
-                    <textarea class="textarea" placeholder="您對於訂單的特殊要求。例: 特殊的送貨要求等" id="checkout" name="n1"
-                        value="不要香菜和蔥">
-
-                    </textarea>
+                    <textarea rows="7" cols="46" placeholder="您對於訂單的特殊要求。例: 特殊的送貨要求等" id="checkout" name="n1"></textarea>
                     <br>
                     <input type="checkbox">寄給我最新優惠與消息
                     <br>
@@ -176,8 +172,8 @@
             console.log(city);
             if (city === "新北市") {
                 $('#Area').replaceWith(`
-            <select class="form-control" id="Area" name="Area">
-                    <option>萬里區</option>
+            <select class="form-control" id="Area" name="n1">
+                    <option  selected>萬里區</option>
                     <option>金山區</option>
                     <option>板橋區</option>
                     <option>汐止區</option>
@@ -197,7 +193,7 @@
                     <option>樹林區</option>
                     <option>鶯歌區</option>
                     <option>三重區</option>
-                    <option selected>新莊區</option>
+                    <option>新莊區</option>
                     <option>泰山區</option>
                     <option>林口區</option>
                     <option>蘆洲區</option>
@@ -211,7 +207,7 @@
             }
             if (city === "基隆市") {
                 $('#Area').replaceWith(`
-            <select class="form-control" id="Area" name="Area">
+            <select class="form-control" id="Area" name="n1">
                     <option>仁愛區</option>
                     <option>信義區</option>
                     <option>中正區</option>
