@@ -70,7 +70,14 @@ img.goods{
 .btn-card{
     background-color: #6fa09e;
     width: 30%;
+    color: white;
+    margin: 5%;
 }
+.btn-card:hover{
+    background-color: #8DCCCA;
+    color: white;
+}
+
 .fancy label {
   display: inline-flex;
   align-items: baseline;
