@@ -41,19 +41,20 @@ body{
 
 .info{
     margin: 5% 8%;
-    width: 100%;
+    width: 85%;
 }
 
 
 .goods-text{
     font-weight: 600;
-    text-align: left;
     font-size: 16px;
     margin-top: 5px;
+    margin-left: 0px;
 }
 
 .goods-price{
     color:indianred;
+    margin-left: 0px;
 }
 img.goods{
     height: 100px;
@@ -65,6 +66,7 @@ img.goods{
     text-align: right;
     margin: 5px;
     font-weight: 500;
+    margin-right: 20px;
 }
 
 .btn-card{
