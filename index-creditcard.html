@@ -11,13 +11,13 @@
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
-    type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
 <!-- Custom styles for this template -->
 <link href="css/landing-page.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/creditcard.css">
+<link rel="stylesheet" href="css/style-card.css">
 
 <!-- airtable -->
 <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
@@ -79,7 +79,7 @@
                     明細顯示
                 </div>
                 <br>
-                <div id="detail2">
+                <div id="detail2" align="left">
                     <!-- <table class="table table-sm goods-text table-borderless">
                         <tr>
                             <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
@@ -113,7 +113,23 @@
                     輸入信用卡資料
                 </div>
 
-                <button class="btn btn-card" type="submit" onclick="main()">確認</button>
+                <form>
+                    <div class="form-container">
+
+                        <input id="column-left" type="text" name="first-name" placeholder="First Name" />
+                        <input id="column-right" type="text" name="last-name" placeholder="Surname" />
+                        <input id="input-field" type="text" name="number" placeholder="Card Number" />
+                        <input id="column-left" type="text" name="expiry" placeholder="MM / YY" />
+                        <input id="column-right" type="text" name="cvc" placeholder="CCV" />
+
+                        <div class="card-wrapper"></div>
+
+                    </div>
+
+                </form>
+                <div align="right"><button class="btn btn-card" type="submit" onclick="main()">確認</button></div>
+
+
             </div>
 
 
@@ -306,7 +322,7 @@
                         "Ordered_quantity": records[i].fields.Shop_amount,
                         //"Pro_produce_date": document.getElementById("produce_date").value,
                         //"Pro_expire_date": "2019-05-03"
-                    }, function (err, record) {
+                    }, function(err, record) {
                         if (err) {
                             console.error(err);
                             return;
@@ -345,7 +361,7 @@
             // ],
             // "Price_total": 200,
             "Orderdetails": OD_id
-        }, function (err, record) {
+        }, function(err, record) {
             if (err) {
                 console.error(err);
                 return;
@@ -378,7 +394,7 @@
             //     "recj5sN36Puw6cTgW",
             //     "recMyIlOAj5eEKuCA"
             // ]
-        }, function (err, record) {
+        }, function(err, record) {
             if (err) {
                 console.error(err);
                 return;
@@ -392,7 +408,7 @@
             //maxRecords: 1,
             view: "Grid view"
         }).eachPage(function page(records, fetchNextPage) {
-            records.forEach(function (record) {
+            records.forEach(function(record) {
                 //var id = record.get('Shop_id');
                 console.log(record.id);
                 clear2(record.id);
@@ -409,7 +425,7 @@
     }
 
     function clear2(id) {
-        base('Shoppingcart').destroy(id, function (err, deletedRecords) {
+        base('Shoppingcart').destroy(id, function(err, deletedRecords) {
             if (err) {
                 console.error(err);
                 return;
@@ -418,5 +434,10 @@
         });
     }
 </script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/121761/card.js'></script>
+<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/121761/jquery.card.js'></script>
 
-</html>
+
+
+<script src="js/index-card.js"></script></html>
