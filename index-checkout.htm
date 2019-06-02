@@ -13,11 +13,17 @@
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
     <link rel="stylesheet" href="css/checkout.css">
     <link rel="stylesheet" href="css/landing-page.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>食趣 - 一人的食材外送</title>
+    <!-- airtable -->
+    <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+    <script src="node_modules/airtable/build/airtable.browser.js"></script>
+
+
 </head>
 
 <body class="body">
@@ -49,13 +55,16 @@
                     <h4>送貨地址</h4>
                     <table class="table">
                         <tr>
-                            <td><label for="last name">姓：</label><input type="text" name="n1" id="checkout" class="form-control" value="柯">
+                            <td><label for="last name">姓：</label><input type="text" name="n1" id="checkout"
+                                    class="form-control" value="柯">
                             </td>
-                            <td><label for="first name">名：</label><input type="text" name="n1" id="checkout" class="form-control" value="文哲">
+                            <td><label for="first name">名：</label><input type="text" name="n1" id="checkout"
+                                    class="form-control" value="文哲">
                             </td>
                         </tr>
                         <tr>
-                            <td><label for="phonenumber">聯絡電話：</label><input type="text" name="n1" id="checkout" class="form-control" maxlength="10" value="0930090351"></td>
+                            <td><label for="phonenumber">聯絡電話：</label><input type="text" name="n1" id="checkout"
+                                    class="form-control" maxlength="10" value="0930090351"></td>
 
                             <td><label for="way">配送方式：</label><br><select id="checkout" name="n1">
                                     <option value="自行收貨" selected>自行收貨</option>
@@ -64,20 +73,51 @@
                         </tr>
 
                         <tr>
-                            <td><label for="Dday">配送日期：</label><input type="date" name="n1" id="checkout" class="form-control">
+                            <td><label for="Dday">配送日期：</label><input type="date" name="n1" id="checkout"
+                                    class="form-control">
                             </td>
-                            <td><label for="Atime">可配送時間：</label><input type="time" name="n1" id="checkout" class="form-control">
+                            <td><label for="Atime">可配送時間：</label><input type="time" name="n1" id="checkout"
+                                    class="form-control">
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2"><label for="direction">居住地址：</label><input type="text" name="n1" id="checkout" class="form-control" placeholder="鄉、鎮、市、街道名稱、門牌號碼、樓層" value="中正路510號"></td>
+                            <td>
+                                <label for="direction">縣市：</label>
+                                <!-- <input type="text"  name="n1" id="checkout"
+                                    class="form-control"  value ="中正路510號"> -->
+                                <select class="form-control" id="City" name="n1" onchange="ChangeArea()">
+                                    <option value="臺北市"  selected>臺北市</option>
+                                    <option value="新北市" >新北市</option>
+                                    <option value="基隆市">基隆市</option>
+                                </select>
+                            </td>
+                            <td><label for="direction">鄉鎮市區：</label>
+                                <select class="form-control" id="Area" name="n1">
+                                    <option selected>中正區</option>
+                                    <option >大同區</option>
+                                    <option >中山區</option>
+                                    <option >松山區</option>
+                                    <option >大安區</option>
+                                    <option >萬華區</option>
+                                    <option >信義區</option>
+                                    <option >士林區</option>
+                                    <option >北投區</option>
+                                    <option >內湖區</option>
+                                    <option >南港區</option>
+                                    <option >文山區</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><label for="direction">居住地址：</label><input type="text" name="n1"
+                                    id="checkout" class="form-control" placeholder="鄉、鎮、市、街道名稱、門牌號碼、樓層" value="中正路510號">
+                            </td>
                             <td></td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                            <button type="submit" class="btn btn-cart"><a href="index-checkoutbill.htm" class="font">是否將帳單寄至不同地址</a></button>
-                            </td>
-                            
+                            <td colspan="2"><a href="index-checkoutbill.htm"><button type="submit"
+                                        class="btn btn-cart">是否將帳單寄至不同地址</button></a></td>
+                            <td></td>
                         </tr>
 
                     </table>
@@ -87,13 +127,14 @@
                 <div class="col-5 p-3 " align="center">
                     <h4><label for="ps" align="left">訂單備註</label></h4>
 
-                    <textarea class="textarea" placeholder="您對於訂單的特殊要求。例: 特殊的送貨要求等" id="checkout" name="n1" value="不要香菜和蔥">
+                    <textarea class="textarea" placeholder="您對於訂單的特殊要求。例: 特殊的送貨要求等" id="checkout" name="n1"
+                        value="不要香菜和蔥">
 
                     </textarea>
                     <br>
                     <input type="checkbox">寄給我最新優惠與消息
                     <br>
-                    <input type="button" class="btn btn-cart" onclick="print()" value="確認送出">
+                    <input type="button" class="btn btn-cart" onclick="print()" value="確認送出"></input>
                 </div>
 
             </div>
@@ -110,6 +151,9 @@
             var d5 = detail[5].value;
             var d6 = detail[6].value;
             var d7 = detail[7].value;
+            var d8 = detail[8].value;
+            var d9 = detail[9].value;
+
 
             window.location.href = "index-creditcard.html?value=" + encodeURI(encodeURI(d0)) +
                 encodeURI(encodeURI(d1)) +
@@ -118,11 +162,70 @@
                 "&" + encodeURI(encodeURI(d4)) +
                 "&" + encodeURI(encodeURI(d5)) +
                 "&" + encodeURI(encodeURI(d6)) +
-                "&" + encodeURI(encodeURI(d7));
+                "&" + encodeURI(encodeURI(d7)) +
+                "&" + encodeURI(encodeURI(d8)) + 
+                "&" + encodeURI(encodeURI(d9));
         };
-
     </script>
 
 </body>
+<script>
+    
+        function ChangeArea() {
+            var city = document.getElementById('City').value;
+            console.log(city);
+            if (city === "新北市") {
+                $('#Area').replaceWith(`
+            <select class="form-control" id="Area" name="Area">
+                    <option>萬里區</option>
+                    <option>金山區</option>
+                    <option>板橋區</option>
+                    <option>汐止區</option>
+                    <option>深坑區</option>
+                    <option>石碇區</option>
+                    <option>瑞芳區</option>
+                    <option>平溪區</option>
+                    <option>雙溪區</option>
+                    <option>貢寮區</option>
+                    <option>新店區</option>
+                    <option>坪林區</option>
+                    <option>烏來區</option>
+                    <option>永和區</option>
+                    <option>中和區</option>
+                    <option>土城區</option>
+                    <option>三峽區</option>
+                    <option>樹林區</option>
+                    <option>鶯歌區</option>
+                    <option>三重區</option>
+                    <option selected>新莊區</option>
+                    <option>泰山區</option>
+                    <option>林口區</option>
+                    <option>蘆洲區</option>
+                    <option>五股區</option>
+                    <option>八里區</option>
+                    <option>淡水區</option>
+                    <option>三芝區</option>
+                    <option>石門區</option>
+            </select>
+            `);
+            }
+            if (city === "基隆市") {
+                $('#Area').replaceWith(`
+            <select class="form-control" id="Area" name="Area">
+                    <option>仁愛區</option>
+                    <option>信義區</option>
+                    <option>中正區</option>
+                    <option>中山區</option>
+                    <option >安樂區</option>
+                    <option>暖暖區</option>
+                    <option>七堵區</option>
+            </select>
+            `);
+            }
+            
+
+        }
+    
+</script>
 
 </html>
