@@ -51,7 +51,8 @@
                     收貨人資料
                 </div>
                 <div id="detail">
-                    <!-- <table class="table info">
+<!--
+                     <table class="table info">
                         <tbody>
                             <tr>
                                 <td></td>
@@ -70,7 +71,8 @@
                             </tr>
 
                         </tbody>
-                    </table> -->
+                    </table> 
+-->
                 </div>
 
             </div>
@@ -78,14 +80,14 @@
                 <div class="head">
                     明細顯示
                 </div>
-                <br>
+            <br>
                 <div id="detail2" align="left">
-                    <!-- <table class="table table-sm goods-text table-borderless">
+<!--
+                     <table class="table table-sm goods-text table-borderless">
                         <tr>
-                            <td rowspan="4"><img class="goods" src="img/food3.jpg"></td>
-                            <td class="goods-price">$168</td>
+                        
                         </tr>
-                        <tr align="left">
+                        <tr align="left" width="px">
                             <td>黃金炸豬排</td>
                         </tr>
 
@@ -94,7 +96,8 @@
 
                         </tr>
                     </table>
-                    <hr> -->
+-->
+               
 
 
                 </div>
@@ -198,7 +201,8 @@
         // console.log(mydate);
         //抓收貨人資料
         $('#detail').append(`
-            <table class="table info">
+<br>
+            <table class="table info>
                         <tr>
                             <td>姓名：${detail[0]}</td>
                             <input type="hidden" id="name" value="${detail[0]}">
@@ -255,7 +259,7 @@
                             $('#detail2').append(`
                                 <table class="table table-sm goods-text table-borderless">
                                 <tr>
-                                    <td rowspan="4"><img class="goods" src="${products[j].fields.Pro_image}"></td>
+                                    <td rowspan="4" width="170px"><img class="goods" src="${products[j].fields.Pro_image}"></td>
                                     <td class="goods-price">$${products[j].fields.Pro_price}</td>
                                 </tr>
                                 <tr align="left">
