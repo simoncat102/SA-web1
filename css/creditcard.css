@@ -71,3 +71,46 @@ img.goods{
     background-color: #6fa09e;
     width: 30%;
 }
+.fancy label {
+  display: inline-flex;
+  align-items: baseline;
+
+  input[type=checkbox],
+  input[type=radio] {
+    position: relative;
+    appearance: none;
+    font-size: inherit;
+    width: 1em;
+    margin: 0;
+    color: inherit;
+    outline: none;
+    font-family: 'Font Awesome 5 Pro';
+    transition: 300ms ease-out;
+
+    &::after {
+      content: '\f111'; // circle
+      display: inline-block;
+      text-align: center;
+      width: 1em;
+    }
+
+    &:checked::after {
+      font-weight: 900;
+    }
+    &:active {
+      transform: scale(.6);
+    }
+
+    + span {
+      margin-left: .35em;
+    }
+  }
+  
+  input[type=checkbox]:checked::after {
+    content: '\f058'; // check-circle
+  }
+
+  input[type=radio]:checked::after {
+    content: '\f192'; // dot-circle
+  }
+}
