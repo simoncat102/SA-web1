@@ -64,53 +64,53 @@
                 <div class="list-group">
                     <main class="fancy">
 
-                    <ul class="nav flex-column">
-                       <br><br>
-                        <h5>選擇所需設備</h5>
-                        <li class="nav-item">
-                            
-                             <input id="Cookies" name="yaybox" type="checkbox" value="Cookies" checked /> 不限
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 烤箱
+                        <ul class="nav flex-column">
+                            <br><br>
+                            <h5>選擇所需設備</h5>
+                            <li class="nav-item">
 
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 微波爐
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 瓦斯爐
-                        </li>
-                        <li class="nav_item"></li>
-                    </ul>
-                    <br><br>
-                    <ul class="nav flex-column">
-                        <h5>選擇菜色類型</h5>
-                        <li class="nav-item">
-                            <input type="checkbox"> 美式
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 中式
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 日式
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 美式
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 泰式
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 法式
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 義式
-                        </li>
-                        <li class="nav-item">
-                            <input type="checkbox"> 客家菜
-                        </li>
-                    </ul>
+                                <input id="Cookies" name="yaybox" type="checkbox" value="Cookies" checked /> 不限
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 烤箱
+
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 微波爐
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 瓦斯爐
+                            </li>
+                            <li class="nav_item"></li>
+                        </ul>
+                        <br><br>
+                        <ul class="nav flex-column">
+                            <h5>選擇菜色類型</h5>
+                            <li class="nav-item">
+                                <input type="checkbox"> 美式
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 中式
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 日式
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 美式
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 泰式
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 法式
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 義式
+                            </li>
+                            <li class="nav-item">
+                                <input type="checkbox"> 客家菜
+                            </li>
+                        </ul>
                     </main>
                 </div>
             </div>
@@ -141,7 +141,8 @@
                                     <td>製作時間 </td>
                                     <td width="25%">
                                         <select class="browser-default custom-select">
-                                            <option selected value="default">10min ~ 20min</option>
+                                            <option selected value="default">預設</option>
+                                            <option>10min ~ 20min</option>
                                             <option value="highToLow">20min ~ 30min</option>
                                             <option value="lowToHigh">30min ~ 40min</option>
                                             <option value="lowToHigh">40min ~ 50min</option>
@@ -288,9 +289,9 @@
                     for (i = 0; i < record.get('Pro_score'); i++) {
                         star.push(
                             `<i class="fas fa-star" style="color:#ffd11a; float:right"></i>`
-                            );
+                        );
                     }
-                    
+
 
                     $('#product').append(
                         `

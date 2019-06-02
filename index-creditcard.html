@@ -11,7 +11,8 @@
 <!-- Custom fonts for this template -->
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+    type="text/css">
 
 <!-- Custom styles for this template -->
 <link href="css/landing-page.min.css" rel="stylesheet">
@@ -51,7 +52,7 @@
                     收貨人資料
                 </div>
                 <div id="detail">
-<!--
+                    <!--
                      <table class="table info">
                         <tbody>
                             <tr>
@@ -80,9 +81,9 @@
                 <div class="head">
                     明細顯示
                 </div>
-            <br>
+                <br>
                 <div id="detail2" align="left">
-<!--
+                    <!--
                      <table class="table table-sm goods-text table-borderless">
                         <tr>
                         
@@ -97,7 +98,7 @@
                         </tr>
                     </table>
 -->
-               
+
 
 
                 </div>
@@ -195,14 +196,18 @@
         result = decodeURI(decodeURI(result));
         var detail = result.split("&");
         console.log(detail);
+        //總價
+        var sumall = 0;
+        var subtotal = [];
         //處理時間
         // var parts = detail[3].split('-');
         // var mydate = new Date(parts[0], parts[1] - 1, parts[2]);
         // console.log(mydate);
         //抓收貨人資料
+
         $('#detail').append(`
-<br>
-            <table class="table info>
+            <br>
+            <table class="table info">
                         <tr>
                             <td>姓名：${detail[0]}</td>
                             <input type="hidden" id="name" value="${detail[0]}">
@@ -250,12 +255,15 @@
             }).eachPage(function page(products, fetchNextPage) {
                 //console.log("products: ", products);
                 var sumeach;
-                var sumall = 0;
+
                 for (var i in shoppingcarts) {
                     for (var j in products) {
                         if (products[j].id === shoppingcarts[i].fields.name[0]) {
                             sumall += products[j].fields.Pro_price * shoppingcarts[i].fields
                                 .Shop_amount;
+                            subtotal.push(products[j].fields.Pro_price * shoppingcarts[i].fields
+                                .Shop_amount);
+
                             $('#detail2').append(`
                                 <table class="table table-sm goods-text table-borderless">
                                 <tr>
@@ -281,7 +289,7 @@
                     }
                 }
 
-                //console.log(sumall);
+                console.log(subtotal);
                 $("#detail2").append(
                     `
                     <p class="total">運費：100</p>
@@ -298,44 +306,157 @@
 
     function main() {
         //first:增加OrderDetail
-        add1();
+        //add1();
+
         //OKKKK
-        //second:增加Order
-        add2();
-        //third:新增客戶資料，因為它沒有註冊，傻眼喔
-        //add_cus();OKKKK
+        //second:增加Order&&客戶資料
+        add_cus();
         //forth:清空資料庫啦啦啦啦啦啦啦啦啦啦
         //clear(); OKKKK  
     };
-    //新增oderdetail
-    function add1() {
-        //base('Shoppingcart')
-        var OD_id = [];
 
+    //新增oderdetail
+    // function add1() {
+    //     //base('Shoppingcart')
+    //     base('Product').select({
+    //         view: "Grid view"
+    //     }).eachPage(function page(pro, fetchNextPage) {
+    //         base('Shoppingcart').select({
+    //             view: "Grid view"
+    //         }).eachPage(function page(records, fetchNextPage) {
+    //             console.log(records);
+    //             for (var i in records) {
+    //                 base('Orderdetails').create({
+    //                     //"Order_id":[******]
+    //                     "Pro_id": [records[i].fields.name[0]],
+    //                     "Ordered_quantity": records[i].fields.Shop_amount,
+    //                     //"Pro_produce_date": document.getElementById("produce_date").value,
+    //                     //"Pro_expire_date": "2019-05-03"
+    //                 }, function (err, record) {
+    //                     if (err) {
+    //                         console.error(err);
+    //                         return;
+    //                     }
+    //                     console.log(record.getId());
+    //                     OD_id.push(record.getId());
+
+    //                 });
+    //             }
+    //             fetchNextPage();
+    //         }, function done(err) {
+    //             if (err) {
+    //                 console.error(err);
+    //                 return;
+    //             }
+    //         });
+
+    //         fetchNextPage();
+    //     }, function done(err) {
+    //         if (err) {
+    //             console.error(err);
+    //             return;
+    //         }
+    //     });
+    // }
+
+
+
+    //新增custer&&oder
+    function add_cus() {
+        console.log(document.getElementById("name").value);
+        base('Customer').create({
+            //"Cus_email": "jerry@gmail.com",
+            //"Cus_password": "jerryyyyyyy",
+            "Cus_name": document.getElementById("name").value,
+
+            //"Cus_gender": "男",
+            "Cus_city": document.getElementById("city").value,
+            "Cus_district": document.getElementById("district").value,
+            "Cus_address": document.getElementById("address").value,
+            "Cus_phone": document.getElementById("phone").value
+
+        }, function (err, cus_record) {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            console.log(cus_record.getId());
+            var Oder_id = cus_record.getId();
+            var d = new Date();
+            var n = d.toISOString();
+            var n2 = detail[3].concat("T", detail[4], ":00.000Z");
+            base('Order').create({
+                "Order_time": n,
+                "Required_time": n2,
+                // "Shipped_time": "2019-05-02T08:40:00.000Z",
+                "Order_status": "已付款",
+                "Cus_id": [
+                    Oder_id
+                ],
+                "Price_total": sumall,
+                // "Orderdetails": OD_id
+            }, function (err, order_record) {
+                if (err) {
+                    console.error(err);
+                    return;
+                }
+                console.log(order_record.getId());
+                var cart_id = order_record.getId();
+
+
+        //找到table---product
         base('Product').select({
             view: "Grid view"
         }).eachPage(function page(pro, fetchNextPage) {
+            //找到table---shoppingcart
+            console.log(pro);
+            var pd = [];
             base('Shoppingcart').select({
                 view: "Grid view"
             }).eachPage(function page(records, fetchNextPage) {
-                console.log(records);
+                records.forEach(function (sc, i) {
+                    var shopcart = sc.fields.name[0];
+                    pro.forEach(function (pc, j) {
+                        if (shopcart === pc.id) {
+                            pd.push(pc.fields.Pro_expire_day);
+                        }
+                    });
+                });
+                console.log(pd);
+                var pd_after = [];
+                for (var i in pd) {
+                    var pd_before = detail[3];
+                    console.log(detail[3]);
+                    var d1 = new Date(detail[3]);
+                    var d2 = new Date(d1);
+                    d2.setDate(d2.getDate() + pd[i]);
+                    console.log(d2);
+                    pd_after.push(d2.toISOString().substr(0,10));
+                    console.log(pd_after);
+                }
+                
                 for (var i in records) {
                     base('Orderdetails').create({
-                        //"Order_id":[******]
+                        "Order_id": [cart_id],
                         "Pro_id": [records[i].fields.name[0]],
-                        "Ordered_quantity": records[i].fields.Shop_amount,
-                        //"Pro_produce_date": document.getElementById("produce_date").value,
-                        //"Pro_expire_date": "2019-05-03"
-                    }, function(err, record) {
+                        "Ordered_quantity": records[i].fields
+                            .Shop_amount,
+                        "Price_subtotal": subtotal[i],
+                        "Pro_produce_date": detail[3],
+                        "Pro_expire_date": pd_after[i]
+                    }, function (err, record) {
                         if (err) {
                             console.error(err);
                             return;
                         }
                         console.log(record.getId());
-                        OD_id.push(record.getId());
-
                     });
+
                 }
+
+
+
+
                 fetchNextPage();
             }, function done(err) {
                 if (err) {
@@ -351,59 +472,10 @@
                 return;
             }
         });
-        console.log(OD_id);
-    }
-    //新增 order
-    function add2() {
-        base('Order').create({
-            // "Order_time": "2019-05-01T05:10:00.000Z",
-            // "Required_time": "2019-05-02T09:00:00.000Z",
-            // "Shipped_time": "2019-05-02T08:40:00.000Z",
-            "Order_status": "已送達",
-            // "Cus_id": [
-            //     "recvrKUAzB9flHgNN"
-            // ],
-            // "Price_total": 200,
-            "Orderdetails": OD_id
-        }, function(err, record) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(record.getId());
-        });
 
 
-    }
-    //新增custer
-    function add_cus() {
-        console.log(document.getElementById("name").value);
-        base('Customer').create({
-            //"Cus_email": "jerry@gmail.com",
-            //"Cus_password": "jerryyyyyyy",
-            "Cus_name": document.getElementById("name").value,
 
-            //"Cus_gender": "男",
-            "Cus_city": document.getElementById("city").value,
-            "Cus_district": document.getElementById("district").value,
-            "Cus_address": document.getElementById("address").value,
-            "Cus_phone": document.getElementById("phone").value
-
-            // "Order": [
-            //     "recX7F2f4fbw3f5Bq",
-            //     "recUBdWMMHRgJ4PkX",
-            //     "rec5vUgwCPYaKm478",
-            //     "recWwSlujhaeXmcg1",
-            //     "recn7iS26SF15cwSt",
-            //     "recj5sN36Puw6cTgW",
-            //     "recMyIlOAj5eEKuCA"
-            // ]
-        }, function(err, record) {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(record.getId());
+            });
         });
     }
 
@@ -412,7 +484,7 @@
             //maxRecords: 1,
             view: "Grid view"
         }).eachPage(function page(records, fetchNextPage) {
-            records.forEach(function(record) {
+            records.forEach(function (record) {
                 //var id = record.get('Shop_id');
                 console.log(record.id);
                 clear2(record.id);
@@ -429,7 +501,7 @@
     }
 
     function clear2(id) {
-        base('Shoppingcart').destroy(id, function(err, deletedRecords) {
+        base('Shoppingcart').destroy(id, function (err, deletedRecords) {
             if (err) {
                 console.error(err);
                 return;
@@ -444,4 +516,6 @@
 
 
 
-<script src="js/index-card.js"></script></html>
+<script src="js/index-card.js"></script>
+
+</html>
